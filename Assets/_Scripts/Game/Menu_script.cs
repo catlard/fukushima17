@@ -18,7 +18,6 @@ public class Menu_script : MonoBehaviour
                 //Debug.Log("KeyCode down: " + kcode);
                 //Debug.Log(kcode);
                 player_code = kcode;
-                }
             }
         }
     }

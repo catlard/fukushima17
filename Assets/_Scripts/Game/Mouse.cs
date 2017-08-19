@@ -10,6 +10,8 @@ public class Mouse : MonoBehaviour {
 	public MouseState _state;
 	public Rigidbody2D _body;
 
+	public CatBellyView _lastBelly;
+
 	public void Start() {
 		Init ();
 	}
@@ -23,11 +25,16 @@ public class Mouse : MonoBehaviour {
 	public void JumpToTarget(string tagName) {
 		_body.bodyType = RigidbodyType2D.Dynamic;
 		GameObject target = FindNextTarget (tagName);
-		Vector4 data = GetRequiredForce (target);
-		_body.velocity = new Vector2(data.x, data.y);
+		Vector2 data = GetRequiredForce (target);
+
+		//bouncing off cat belly
+		if (tagName == "Floor") {
+			data *= _lastBelly.GetPower ();
+			print ("Mouse landed on belly with " + _lastBelly.GetPower () + " % power.");
+		}
 
 
-
+		_body.velocity = data;
 	}
 
 	public void Update() {
@@ -37,10 +44,10 @@ public class Mouse : MonoBehaviour {
 		}
 	}
 
-	private Vector4 GetRequiredForce(GameObject target) {
+	private Vector2 GetRequiredForce(GameObject target) {
 
 		Vector2 finish = PhysicsHelpers.GetParableInitialVelocity (transform.position, target.transform.position);
-		return new Vector4 (finish.x, finish.y, 0,0);
+		return finish;
 	}
 
 	//find the next gameobject on the x axis with a tag "CatBelly".
@@ -68,6 +75,8 @@ public class Mouse : MonoBehaviour {
 	}
 
 	public void OnCollisionEnter2D(Collision2D c) {
+		Physics2D.IgnoreCollision(c.collider, c.otherCollider);
+
 		print (c.gameObject.tag);
 		string tag = c.gameObject.tag;
 		if (tag == "Floor") {
@@ -78,6 +87,7 @@ public class Mouse : MonoBehaviour {
 			_body.angularVelocity = 0;
 		} else if(tag == "CatBelly") {
 			print ("GOT THERE");
+			_lastBelly = c.gameObject.GetComponent<CatBellyView> ();
 			JumpToTarget ("Floor");
 		}
 
