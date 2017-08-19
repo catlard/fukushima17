@@ -63,7 +63,6 @@ public class Mouse : MonoBehaviour {
 			if (dist < 0)
 				continue;
 
-			print (possibleTarget.transform.name + " " + dist);
 			if (dist < bestDist) {
 				bestDist = dist;
 				target = possibleTarget;
@@ -77,7 +76,6 @@ public class Mouse : MonoBehaviour {
 	public void OnCollisionEnter2D(Collision2D c) {
 		Physics2D.IgnoreCollision(c.collider, c.otherCollider);
 
-		print (c.gameObject.tag);
 		string tag = c.gameObject.tag;
 		if (tag == "Floor") {
 			_state = MouseState.LANDED;
@@ -86,7 +84,6 @@ public class Mouse : MonoBehaviour {
 			_body.transform.eulerAngles = Vector3.zero;
 			_body.angularVelocity = 0;
 		} else if(tag == "CatBelly") {
-			print ("GOT THERE");
 			_lastBelly = c.gameObject.GetComponent<CatBellyView> ();
 			JumpToTarget ("Floor");
 		}
