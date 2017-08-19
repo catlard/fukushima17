@@ -8,15 +8,17 @@ public enum MouseState { JUMPING, LANDED }
 public class Mouse : MonoBehaviour {
 
 	public MouseState _state;
-	public Rigidbody2D _body;
+	private Rigidbody2D _body;
+	private Collider2D _collider;
 
-	public CatBellyView _lastBelly;
+	private CatBellyView _lastBelly;
 
 	public void Start() {
 		Init ();
 	}
 
 	public void Init() {
+		_collider = GetComponent<Collider2D> ();
 		_state = MouseState.LANDED;
 		_body = GetComponent<Rigidbody2D> ();
 	}
@@ -38,6 +40,15 @@ public class Mouse : MonoBehaviour {
 	}
 
 	public void Update() {
+
+//		string layer = LayerMask.LayerToName (gameObject.layer);
+
+//		if (layer == "Default" && _body.velocity.y < 0) {
+//			gameObject.layer = LayerMask.NameToLayer ("UpwardMouse");
+//		} else if (layer == "UpwardMouse") {
+//			gameObject.layer = LayerMask.NameToLayer ("Default");
+//		}
+
 		if (Input.GetMouseButtonDown (0) && _state == MouseState.LANDED) {
 			JumpToTarget ("CatBelly");
 			_state = MouseState.JUMPING;
@@ -74,6 +85,8 @@ public class Mouse : MonoBehaviour {
 	}
 
 	public void OnCollisionEnter2D(Collision2D c) {
+
+		Physics2D.IgnoreCollision (_collider, c.gameObject.GetComponent<Collider2D> ());
 
 		string tag = c.gameObject.tag;
 		if (tag == "Floor") {
