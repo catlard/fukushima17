@@ -6,45 +6,54 @@ using UnityEngine.UI;
 
 public class Menu_script : MonoBehaviour
 {
-    PlayerData data = new PlayerData();
-    void Start()
+
+	public List<PlayerData> _players;
+
+	void Start()
     {
-        data.player_code = new List<KeyCode>();
-    }
+		_players = new List<PlayerData> ();
+	}
 
     public void Update()
     {
         foreach (KeyCode kcode in Enum.GetValues(typeof(KeyCode)))//Get what key are you pressing
         {
-            if (Input.GetKeyDown(kcode))
-            {
-                //print(kcode);
-                data.player_code.Add(kcode);
-                
-                //Debug.Log(PlayerData.Static.player_code);
-                //Debug.Log("KeyCode down: " + kcode);
+			if (Input.GetKeyDown (kcode)) {
 
-            }
-                //Debug.Log(kcode);
-                player_code = kcode;
+				bool found = false;
 
-            }
+				for(int i = _players.Count -1; i > -1; i--) {
+					PlayerData p = _players [i];
+					if (p.player_code == kcode) {
+						_players.Remove (p);
+						found = true;
+					}
+				}
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            foreach (var item in
-            data.player_code)
-            {
-                item.ToString();
-            }
+				if (!found) {
+					PlayerData newPlayer = new PlayerData ();
+					newPlayer.player_code = kcode;
+					newPlayer._color = Color.red;
+					_players.Add (newPlayer);
+				}
+
+
+			}
 
         }
 
+//        if (Input.GetMouseButtonDown(0))
+//        {
+//            foreach (var item in
+//            data.player_code)
+//            {
+//                item.ToString();
+//            }
+//
+//        }
+
     }
-    /*public void AllPlayerKey()
-    {
-        KeyData.Add(new PlayerData() { })
-    }*/
+ 
 
 }
 
