@@ -4,15 +4,69 @@ using UnityEngine;
 
 public class GameModel : SingletonMonoBehavior<GameModel> {
 
-	private float _currentXPosition = 0;
 
-	public void Init() {
+	private float _currentXPosition = 0;
+    private int _currentLevel = 0;
+    private Vector3 _lastplayformRightPoint; //最右最前的平台最右的點
+
+    public List<Transform> _platformsList; //所有平台的array
+
+    public void Init() {
 
 	}
 
 	public float UpdateX() {
-		_currentXPosition += (Time.deltaTime * 10);
+		_currentXPosition += (Time.deltaTime )*(getCurrentLevel()/0.25f ) ;
 		return _currentXPosition;
 	}
+
+    public int getCurrentLevel()
+    {
+        //start in level1
+        //根據time.time來慢慢增加速度
+        _currentLevel = ( (int)Time.time / 5)+1;
+        return _currentLevel;
+    }
+
+    public List<Transform> getListPlatformsList (){
+        return _platformsList;
+    }
+
+    public void registerNewPlatformToList(Transform Platform) //好像不應該放在這 //ok
+    {
+        //註冊生成出來的platform到model的list裡
+        _platformsList.Add(Platform);
+    }
+
+    public void removeOldestPlatformToList() 
+    {
+        //remove the oldest platform form list
+        Destroy(_platformsList[0].gameObject);
+        _platformsList.Remove(_platformsList[0]);
+    }
+
+    public float getMostRightPointInPlatformsList()
+    {
+        //取得最右端的platforms坐標(xPos)
+        if (_platformsList.Count < 1)
+        {
+            Debug.LogError("platforms count less than 1");
+            return 0;
+        }
+
+        foreach (Transform child in _platformsList[_platformsList.Count - 1].transform)
+        {
+            if (child.gameObject.tag == "rightPoint")
+            {
+                return child.position.x;
+            }
+        }
+
+
+        Debug.LogError("cant not find tag");
+        return 0;
+
+    }
+
 
 }
