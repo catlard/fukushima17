@@ -6,30 +6,46 @@ using UnityEngine.UI;
 
 public class Menu_script : MonoBehaviour
 {
-    public Text test_Text;
-    public KeyCode player_code; // press down keycode
-    public List<PlayerData> data= new List<PlayerData>();
+    PlayerData data = new PlayerData();
+    void Start()
+    {
+        data.player_code = new List<KeyCode>();
+    }
+
     public void Update()
     {
         foreach (KeyCode kcode in Enum.GetValues(typeof(KeyCode)))//Get what key are you pressing
         {
             if (Input.GetKeyDown(kcode))
             {
+                //print(kcode);
+                data.player_code.Add(kcode);
+                
+                //Debug.Log(PlayerData.Static.player_code);
                 //Debug.Log("KeyCode down: " + kcode);
+
+            }
                 //Debug.Log(kcode);
                 player_code = kcode;
+
             }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            foreach (var item in
+            data.player_code)
+            {
+                item.ToString();
+            }
+
         }
+
     }
-    
-    //DetectKeyPress();
+    /*public void AllPlayerKey()
+    {
+        KeyData.Add(new PlayerData() { })
+    }*/
+
 }
 
-        /*public void DetectKeyPress()
-        {
-            if (Input.anyKeyDown)
-            {
-                Debug.Log("keypress");
-            }
-        }*/
 

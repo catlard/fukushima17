@@ -4,8 +4,7 @@ using UnityEngine;
 
 public struct PlayerData
 {
-
-    public KeyCode Keycode;
+    public List<KeyCode> player_code;// press down keycode list
 
 }
 

@@ -1,0 +1,67 @@
+﻿Merge branch 'master' of https://github.com/catlard/fukushima17
+
+# Conflicts:
+#	Assets/_Scripts/Game/Menu_script.cs
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch and 'origin/master' have diverged,
+# and have 1 and 7 different commits each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	new file:   Assets/_Art.meta
+#	new file:   Assets/_Art/We_Can_Do_It!.png
+#	new file:   Assets/_Art/We_Can_Do_It!.png.meta
+#	new file:   Assets/_Audio.meta
+#	new file:   Assets/_Prefabs.meta
+#	new file:   Assets/_Prefabs/CatBelly.prefab
+#	new file:   Assets/_Prefabs/CatBelly.prefab.meta
+#	new file:   Assets/_Prefabs/Floor.prefab
+#	new file:   Assets/_Prefabs/Floor.prefab.meta
+#	new file:   Assets/_Prefabs/Mouse.prefab
+#	new file:   Assets/_Prefabs/Mouse.prefab.meta
+#	new file:   Assets/_Scenes.meta
+#	new file:   Assets/_Scenes/Game.unity
+#	renamed:    Assets/GameView.unity.meta -> Assets/_Scenes/Game.unity.meta
+#	renamed:    Assets/Menu.unity -> Assets/_Scenes/Menu.unity
+#	renamed:    Assets/Menu.unity.meta -> Assets/_Scenes/Menu.unity.meta
+#	new file:   Assets/_Scenes/MouseTest.unity
+#	new file:   Assets/_Scenes/MouseTest.unity.meta
+#	renamed:    Assets/GameView.unity -> Assets/_Scenes/Result.unity
+#	new file:   Assets/_Scenes/Result.unity.meta
+#	new file:   Assets/_Scripts/CatBellyView.cs
+#	new file:   Assets/_Scripts/CatBellyView.cs.meta
+#	new file:   Assets/_Scripts/Game/CameraUtils.cs
+#	new file:   Assets/_Scripts/Game/CameraUtils.cs.meta
+#	modified:   Assets/_Scripts/Game/GameController.cs
+#	modified:   Assets/_Scripts/Game/GameModel.cs
+#	modified:   Assets/_Scripts/Game/GameView.cs
+#	modified:   Assets/_Scripts/Game/Menu_script.cs
+#	new file:   Assets/_Scripts/Game/Mouse.cs
+#	new file:   Assets/_Scripts/Game/Mouse.cs.meta
+#	new file:   Assets/_Scripts/Game/PhysicsHelpers.cs
+#	new file:   Assets/_Scripts/Game/PhysicsHelpers.cs.meta
+#	new file:   Assets/_Scripts/Game/PlatformFactory.cs
+#	new file:   Assets/_Scripts/Game/PlatformFactory.cs.meta
+#	new file:   Assets/_Scripts/Result.meta
+#	new file:   Assets/_Scripts/Result/ResultController.cs
+#	new file:   Assets/_Scripts/Result/ResultController.cs.meta
+#	new file:   Assets/_Scripts/Result/ResultDeta.cs
+#	new file:   Assets/_Scripts/Result/ResultDeta.cs.meta
+#	new file:   Assets/_Scripts/Result/ResultModel.cs
+#	new file:   Assets/_Scripts/Result/ResultModel.cs.meta
+#	new file:   Assets/_Scripts/Result/ResultView.cs
+#	new file:   Assets/_Scripts/Result/ResultView.cs.meta
+#	modified:   ProjectSettings/TagManager.asset
+#
+

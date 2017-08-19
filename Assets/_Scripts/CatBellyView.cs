@@ -14,7 +14,7 @@ public class CatBellyView : MonoBehaviour {
 
 
 	public void Start() {
-		Init (1);
+		Init (.5f);
 	}
 
 	public void Init(float breathingSpeed) {
@@ -25,7 +25,7 @@ public class CatBellyView : MonoBehaviour {
 
 	public void Update() {
 
-		_currentPower += Time.deltaTime * _breathingSpeed * 1;
+		_currentPower += Time.deltaTime * _breathingSpeed;
 
 		//debug view;
 		float wrapped = GetPower ();
