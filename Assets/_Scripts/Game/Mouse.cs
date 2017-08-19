@@ -74,7 +74,6 @@ public class Mouse : MonoBehaviour {
 	}
 
 	public void OnCollisionEnter2D(Collision2D c) {
-		Physics2D.IgnoreCollision(c.collider, c.otherCollider);
 
 		string tag = c.gameObject.tag;
 		if (tag == "Floor") {
