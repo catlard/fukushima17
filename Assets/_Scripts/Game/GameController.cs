@@ -15,4 +15,13 @@ public class GameController : SingletonMonoBehavior<GameController> {
 		float newX = GameModel.instance.UpdateX ();
 		GameView.instance.BuildLevelFor (newX);
 	}
+
+	public void OnMakePlatform(GameObject go) {
+		GameModel.instance.OnMakePlatform (go);
+	}
+
+	public void OnMakeCat(GameObject go) {
+		GameModel.instance.OnMakeCat (go);
+	}
 }
+
