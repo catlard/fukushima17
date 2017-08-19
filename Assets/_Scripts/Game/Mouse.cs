@@ -8,15 +8,19 @@ public enum MouseState { JUMPING, LANDED }
 public class Mouse : MonoBehaviour {
 
 	public MouseState _state;
-	public Rigidbody2D _body;
+	private Rigidbody2D _body;
+	private Collider2D _collider;
+	private SpriteRenderer _mouseSprite;
 
-	public CatBellyView _lastBelly;
+	private CatBellyView _lastBelly;
 
 	public void Start() {
 		Init ();
 	}
 
 	public void Init() {
+		_mouseSprite = transform.Find ("Sprite").GetComponent<SpriteRenderer> ();
+		_collider = GetComponent<Collider2D> ();
 		_state = MouseState.LANDED;
 		_body = GetComponent<Rigidbody2D> ();
 	}
@@ -27,17 +31,30 @@ public class Mouse : MonoBehaviour {
 		GameObject target = FindNextTarget (tagName);
 		Vector2 data = GetRequiredForce (target);
 
-		//bouncing off cat belly
+//		bouncing off cat belly
 		if (tagName == "Floor") {
-			data *= _lastBelly.GetPower ();
+			float power = _lastBelly.GetPower ();
+
+			if (power > .9f)
+				power = 1;
+
+			data *= power;
 			print ("Mouse landed on belly with " + _lastBelly.GetPower () + " % power.");
 		}
-
-
+			
 		_body.velocity = data;
 	}
 
 	public void Update() {
+
+		string layer = LayerMask.LayerToName (gameObject.layer);
+
+		if (layer == "Default" && _body.velocity.y > .01f) {
+			gameObject.layer = LayerMask.NameToLayer ("UpwardMouse");
+		} else if (layer == "UpwardMouse" && _body.velocity.y < -.01f) {
+			gameObject.layer = LayerMask.NameToLayer ("Default");
+		}
+
 		if (Input.GetMouseButtonDown (0) && _state == MouseState.LANDED) {
 			JumpToTarget ("CatBelly");
 			_state = MouseState.JUMPING;
@@ -45,8 +62,10 @@ public class Mouse : MonoBehaviour {
 	}
 
 	private Vector2 GetRequiredForce(GameObject target) {
-
-		Vector2 finish = PhysicsHelpers.GetParableInitialVelocity (transform.position, target.transform.position);
+		Vector3 myPos = transform.position;
+		myPos.y -= (_mouseSprite.bounds.extents.y) * 1f;
+//		myPos.x = GetComponent<SpriteRenderer> ().bounds.extents.x;
+		Vector2 finish = PhysicsHelpers.GetParableInitialVelocity (myPos, target.transform.position);
 		return finish;
 	}
 
@@ -74,6 +93,8 @@ public class Mouse : MonoBehaviour {
 	}
 
 	public void OnCollisionEnter2D(Collision2D c) {
+
+		Physics2D.IgnoreCollision (_collider, c.gameObject.GetComponent<Collider2D> ());
 
 		string tag = c.gameObject.tag;
 		if (tag == "Floor") {
