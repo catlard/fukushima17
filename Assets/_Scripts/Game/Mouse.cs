@@ -41,13 +41,13 @@ public class Mouse : MonoBehaviour {
 
 	public void Update() {
 
-//		string layer = LayerMask.LayerToName (gameObject.layer);
+		string layer = LayerMask.LayerToName (gameObject.layer);
 
-//		if (layer == "Default" && _body.velocity.y < 0) {
-//			gameObject.layer = LayerMask.NameToLayer ("UpwardMouse");
-//		} else if (layer == "UpwardMouse") {
-//			gameObject.layer = LayerMask.NameToLayer ("Default");
-//		}
+		if (layer == "Default" && _body.velocity.y > .01f) {
+			gameObject.layer = LayerMask.NameToLayer ("UpwardMouse");
+		} else if (layer == "UpwardMouse" && _body.velocity.y < -.01f) {
+			gameObject.layer = LayerMask.NameToLayer ("Default");
+		}
 
 		if (Input.GetMouseButtonDown (0) && _state == MouseState.LANDED) {
 			JumpToTarget ("CatBelly");
