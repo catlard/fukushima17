@@ -37,21 +37,22 @@ public class Menu_script : MonoBehaviour
                 { 
 				bool found = false;
 
-				for(int i = _players.Count -1; i > -1; i--) {
+				for(int i = _players.Count -1; i > -1; i--) {//remove the mouse
 					PlayerData p = _players [i];
-					if (p.player_code == kcode) {
+                        if (p.player_code == kcode) {
 						_players.Remove (p);
 						found = true;
 
 					}
 				}
 
-				if (!found) {
+				if (!found) {//spawn mouse
 					PlayerData newPlayer = new PlayerData ();
 					newPlayer.player_code = kcode;
 					newPlayer._color = Color.red;
 					_players.Add (newPlayer);
-				}
+                        Instantiate(this.test_object);
+                    }
                 }
 
             /*if (Input.GetKeyDown(kcode))

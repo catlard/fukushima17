@@ -17,7 +17,7 @@ public class CharacterDownloader : MonoBehaviour {
 	}
 
 
-	private IEnumerator GetImages(string filename)
+	private IEnumerator GetImages()
 	{
 		bool error = false;
 		int charNum = 0;
@@ -25,7 +25,7 @@ public class CharacterDownloader : MonoBehaviour {
 		while (!error) {
 			charNum++;
 
-			string numStr = charNum.ToString();
+			string numStr = charNum.ToString ();
 			if (charNum < 10) {
 				numStr = "000" + numStr;
 			} else if (charNum < 100) {
@@ -43,7 +43,7 @@ public class CharacterDownloader : MonoBehaviour {
 			yield return www;
 			print ("GOT " + bodyFile + ".");
 			System.IO.File.WriteAllBytes (Application.dataPath + "/_Art/chars/" + bodyFile, www.texture.EncodeToPNG ());
-
+		
 			// Start a download of the given URL
 			www = new WWW (_url + armFile);
 			// Wait for download to complete
@@ -51,7 +51,6 @@ public class CharacterDownloader : MonoBehaviour {
 			yield return www;
 			print ("GOT " + armFile + ".");
 			System.IO.File.WriteAllBytes (Application.dataPath + "/_Art/chars/" + armFile, www.texture.EncodeToPNG ());
-
 
 			if (www.error != null) {
 				error = true;
