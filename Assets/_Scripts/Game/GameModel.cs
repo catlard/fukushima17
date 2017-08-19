@@ -8,6 +8,7 @@ public class GameModel : SingletonMonoBehavior<GameModel> {
 
 	private float _currentXPosition = 0;
     private int _currentLevel = 0;
+    private float _currentTimePass = 0;
     private Vector3 _lastplayformRightPoint; //最右最前的平台最右的點
 
     public List<Transform> _platformsList; //所有平台的array
@@ -17,7 +18,9 @@ public class GameModel : SingletonMonoBehavior<GameModel> {
 
 
 	public void Init() {
-		_platforms = GameObject.FindGameObjectsWithTag ("Floor").ToList<GameObject> ();
+        _currentTimePass = 0;
+        _currentLevel = 0;
+        _platforms = GameObject.FindGameObjectsWithTag ("Floor").ToList<GameObject> ();
 		_cats = GameObject.FindGameObjectsWithTag ("CatBelly").ToList<GameObject> ();
 
 	}
@@ -31,7 +34,9 @@ public class GameModel : SingletonMonoBehavior<GameModel> {
     {
         //start in level1
         //根據time.time來慢慢增加速度
-        _currentLevel = ( (int)Time.time / 5)+1;
+        //time.time  not work
+        _currentTimePass += Time.deltaTime;
+        _currentLevel = ( (int)_currentTimePass / 5)+1;
         return _currentLevel;
     }
 
@@ -95,8 +100,16 @@ public class GameModel : SingletonMonoBehavior<GameModel> {
         Bounds b = CameraUtils.OrthographicBounds(Camera.main);
         int randomNumber = Random.Range(2,7); //
         float yHeightInCamera = b.max.y - b.min.y;
-        print("min" + b.min.y);
         return b.min.y+  ((yHeightInCamera / 10.0f) * randomNumber);
+    }
+    
+    public int getWhoLoseTheGame()
+    {
+        //input playerList
+
+        //-1 代表 未有玩家死亡 
+        return -1;
+
     }
 
     /*
