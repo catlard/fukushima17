@@ -9,7 +9,8 @@ public struct PlayerData
 	public int score;
 	public GameObject StylePrefab;
 	public KeyCode player_code;// press down keycode list
-	public Color _color;
+    public Color color;
+    public string UP_alphabet;
 
 }
 

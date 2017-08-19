@@ -7,8 +7,12 @@ using UnityEngine.UI;
 public class Menu_script : MonoBehaviour
 {
     public bool alphabetlock = false;
-	public List<PlayerData> _players;
-    public GameObject test_object;
+	public List<PlayerData> _players = new List<PlayerData>();
+    //public GameObject test_object;
+    public GameObject destory_mouse;
+    public List<GameObject> RemoveMouseList ;
+    public string keyShow;
+    public Text test;
 
     PlayerData data = new PlayerData();
     void Start()
@@ -18,11 +22,12 @@ public class Menu_script : MonoBehaviour
 
     public void Update()
     {
-
+        
         foreach (KeyCode kcode in Enum.GetValues(typeof(KeyCode)))//Get what key are you pressing
         {
 			if (Input.GetKeyDown (kcode))
            {
+                //Debug.Log(keyShow);
                 if((int)kcode==27)//get escape key
                 {
                     Debug.Log("esc");
@@ -33,45 +38,38 @@ public class Menu_script : MonoBehaviour
                     Debug.Log("enter");
 
                 }
-                if( (int)kcode>97&&(int)kcode<122)// only alphabet
+                if( (int)kcode>=97&&(int)kcode<=122)// only alphabet
                 { 
 				bool found = false;
-
-				for(int i = _players.Count -1; i > -1; i--) {//remove the mouse
+                    keyShow = kcode.ToString();
+                    for (int i = _players.Count -1; i > -1; i--) {//remove the mouse
 					PlayerData p = _players [i];
                         if (p.player_code == kcode) {
-						_players.Remove (p);
+                            //MouseFactory.instance.DestoryMouse(p.destory_mouse );
+                            _players.Remove (p);
 						found = true;
-
-					}
+                    }
 				}
 
 				if (!found) {//spawn mouse
 					PlayerData newPlayer = new PlayerData ();
 					newPlayer.player_code = kcode;
-					newPlayer._color = Color.red;
-					_players.Add (newPlayer);
-                        Instantiate(this.test_object);
+                    newPlayer.color = new Color(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value);
+                    newPlayer.UP_alphabet = keyShow;
+                    _players.Add (newPlayer);
+                        GameObject newMouse = MouseFactory.instance.makeMouse(newPlayer);
+                        //[
+                        // Instantiate(this.test_object);
                     }
                 }
-
-            /*if (Input.GetKeyDown(kcode))
-            {
-                //print(kcode);
-                data.player_code.Add(kcode);
-
-            }*/
             }
-
         }
-
     }
-    /*public void AllPlayerKey()
+
+    private void DestoryMouse(PlayerData playerData, object input)
     {
-        KeyData.Add(new PlayerData() { })
-    }*/
-
-
+        throw new NotImplementedException();
+    }
 }
 
 
