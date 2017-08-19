@@ -6,20 +6,25 @@ using UnityEngine.UI;
 
 public class Menu_script : MonoBehaviour
 {
+<<<<<<< HEAD
     public bool alphabetlock = false;
 	public List<PlayerData> _players;
     public GameObject test_object;
 
+=======
+    PlayerData data = new PlayerData();
+>>>>>>> 0cf2bb9bb665de4924a12d39676e10aeb95d3253
     void Start()
     {
-		_players = new List<PlayerData> ();
-	}
+        data.player_code = new List<KeyCode>();
+    }
 
     public void Update()
     {
 
         foreach (KeyCode kcode in Enum.GetValues(typeof(KeyCode)))//Get what key are you pressing
         {
+<<<<<<< HEAD
 			if (Input.GetKeyDown (kcode))
            {
                 if((int)kcode==27)//get escape key
@@ -53,22 +58,41 @@ public class Menu_script : MonoBehaviour
 				}
                 }
 
+=======
+            if (Input.GetKeyDown(kcode))
+            {
+                //print(kcode);
+                data.player_code.Add(kcode);
+                
+                //Debug.Log(PlayerData.Static.player_code);
+                //Debug.Log("KeyCode down: " + kcode);
+                /*if (kcode!= PlayerData.Static.player_code)
+                {
+                    Debug.Log("19");
+                }*/
+
+            }
+            }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            foreach (var item in data.player_code)
+            {
+                item.ToString();
+>>>>>>> 0cf2bb9bb665de4924a12d39676e10aeb95d3253
             }
 
         }
 
-//        if (Input.GetMouseButtonDown(0))
-//        {
-//            foreach (var item in
-//            data.player_code)
-//            {
-//                item.ToString();
-//            }
-//
-//        }
-
     }
+<<<<<<< HEAD
 
+=======
+    /*public void AllPlayerKey()
+    {
+        KeyData.Add(new PlayerData() { })
+    }*/
+>>>>>>> 0cf2bb9bb665de4924a12d39676e10aeb95d3253
 
 }
 
