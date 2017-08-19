@@ -15,7 +15,7 @@ public class GameController : SingletonMonoBehavior<GameController> {
 	// Update is called once per frame
 	void Update () {
 		float newX = GameModel.instance.UpdateX ();
-		GameView.instance.BuildLevelFor (newX);
+        GameView.instance.BuildLevelFor(newX);
 
         int level = GameModel.instance.getCurrentLevel();
         GameView.instance.displayLevel(level);
@@ -23,23 +23,23 @@ public class GameController : SingletonMonoBehavior<GameController> {
         Xpos = newX;
         testZone();
 
-        makePlatformEvent();
+
     }
 
-    void makePlatformEvent()
+    public void OnMakePlatform()
     {
-        Bounds b = CameraUtils.OrthographicBounds(Camera.main);
-        if (GameModel.instance.getMostRightPointInPlatformsList() > b.max.x + 2)
-        {
-            return;
-        }
+
 
         float spawnInWhere = GameModel.instance.getMostRightPointInPlatformsList();
 
 
         //spawn
-        Transform newPlatform = GameView.instance.SinglePlatformsFactory(spawnInWhere);
-            GameModel.instance.registerNewPlatformToList(newPlatform);
+        Transform newPlatform = PlatformFactory.instance.SinglePlatformsFactory(spawnInWhere);
+         Transform cabinetTran =  GameModel.instance.getCabinetObjectTransform(newPlatform); //已取得櫃臺的transform
+        float newCabinetHeight = GameModel.instance.getRandomHeight();
+        cabinetTran.position = new Vector3(cabinetTran.position.x, newCabinetHeight, cabinetTran.position.z);
+
+        GameModel.instance.registerNewPlatformToList(newPlatform);
         
 
 
@@ -56,6 +56,7 @@ public class GameController : SingletonMonoBehavior<GameController> {
         if (Input.GetKeyDown(KeyCode.L) )
         {
             //makePlatformEvent();
+            print( GameModel.instance.getRandomHeight() );
         }
     }
 

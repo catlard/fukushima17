@@ -23,7 +23,7 @@ public class GameModel : SingletonMonoBehavior<GameModel> {
 	}
 
 	public float UpdateX() {
-		_currentXPosition += (Time.deltaTime )*(getCurrentLevel()/0.25f ) ;
+		_currentXPosition += (Time.deltaTime )*(getCurrentLevel()/1f ) ;
 		return _currentXPosition;
 	}
 
@@ -74,7 +74,31 @@ public class GameModel : SingletonMonoBehavior<GameModel> {
         return 0;
 
     }
-    
+
+    public Transform getCabinetObjectTransform(Transform platform)
+    {
+        foreach (Transform child in platform)
+        {
+            if (child.gameObject.tag == "bookShelfheight")
+            {
+                return child;
+            }
+        }
+
+        Debug.LogError("cant not find tag");
+        return null;
+    }
+
+    public float getRandomHeight()
+    {
+        //隨機出y畫面比例
+        Bounds b = CameraUtils.OrthographicBounds(Camera.main);
+        int randomNumber = Random.Range(2,7); //
+        float yHeightInCamera = b.max.y - b.min.y;
+        print("min" + b.min.y);
+        return b.min.y+  ((yHeightInCamera / 10.0f) * randomNumber);
+    }
+
     /*
 		_currentXPosition += (Time.deltaTime * .5f);
 		return _currentXPosition;
