@@ -7,14 +7,11 @@ public class GameModel : SingletonMonoBehavior<GameModel> {
 
 
 	private float _currentXPosition = 0;
-<<<<<<< HEAD
     private int _currentLevel = 0;
     private Vector3 _lastplayformRightPoint; //最右最前的平台最右的點
 
     public List<Transform> _platformsList; //所有平台的array
 
-    public void Init() {
-=======
 	public List<GameObject> _platforms;
 	public List<GameObject> _cats;
 
@@ -22,12 +19,10 @@ public class GameModel : SingletonMonoBehavior<GameModel> {
 	public void Init() {
 		_platforms = GameObject.FindGameObjectsWithTag ("Floor").ToList<GameObject> ();
 		_cats = GameObject.FindGameObjectsWithTag ("CatBelly").ToList<GameObject> ();
->>>>>>> 76d3febc2ae5b603ee0c6a8b5137eea50d582411
 
 	}
 
 	public float UpdateX() {
-<<<<<<< HEAD
 		_currentXPosition += (Time.deltaTime )*(getCurrentLevel()/0.25f ) ;
 		return _currentXPosition;
 	}
@@ -79,8 +74,8 @@ public class GameModel : SingletonMonoBehavior<GameModel> {
         return 0;
 
     }
-
-=======
+    
+    /*
 		_currentXPosition += (Time.deltaTime * .5f);
 		return _currentXPosition;
 	}
@@ -105,5 +100,6 @@ public class GameModel : SingletonMonoBehavior<GameModel> {
 		return latest.GetComponent<SpriteRenderer> ().bounds.max.x;
 	}
 >>>>>>> 76d3febc2ae5b603ee0c6a8b5137eea50d582411
+*/
 
 }

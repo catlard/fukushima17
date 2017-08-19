@@ -5,11 +5,7 @@ using UnityEngine;
 public class GameView : SingletonMonoBehavior<GameView> {
     public GameObject singlePlatform;
 
-<<<<<<< HEAD
 
-    public void Init() {
-=======
->>>>>>> 76d3febc2ae5b603ee0c6a8b5137eea50d582411
 
 	private float _spaceBetweenPlatforms = 6;
 	private float _spaceBetweenCats = 6;
@@ -20,7 +16,6 @@ public class GameView : SingletonMonoBehavior<GameView> {
 	}
 
 	public void BuildLevelFor(float xPosition) {
-<<<<<<< HEAD
         //move the camera
         //make the platforms and the cats
         cameraMovement(xPosition);
@@ -49,8 +44,7 @@ public class GameView : SingletonMonoBehavior<GameView> {
         //display current Level
         print(level);
     }
-
-=======
+    /*
 		//move the camera
 		Vector3 currPos = Camera.main.transform.position;
 		Vector3 newPos = currPos;
@@ -79,4 +73,5 @@ public class GameView : SingletonMonoBehavior<GameView> {
 		}
 	}
 >>>>>>> 76d3febc2ae5b603ee0c6a8b5137eea50d582411
+*/
 }

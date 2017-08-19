@@ -1,9 +1,4 @@
-<<<<<<< HEAD
 using UnityEngine;
-=======
-﻿using UnityEngine;
->>>>>>> 76d3febc2ae5b603ee0c6a8b5137eea50d582411
-using System.Collections;
 
 public static class CameraUtils {
 
