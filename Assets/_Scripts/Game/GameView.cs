@@ -12,15 +12,22 @@ public class GameView : SingletonMonoBehavior<GameView> {
 
 	public void Init() {
 		PlatformFactory.instance.Init ();
+    }
 
-	}
-
-	public void BuildLevelFor(float xPosition) {
+ public void BuildLevelFor(float xPosition) {
         //move the camera
         //make the platforms and the cats
         cameraMovement(xPosition);
-        //buildSinglePlatforms(xPosition);
+        buildPlatforms();
+    }
 
+    void buildPlatforms()
+    {
+        Bounds b = CameraUtils.OrthographicBounds(Camera.main);
+        if (GameModel.instance.getMostRightPointInPlatformsList() <= b.max.x + 2)
+        {
+            GameController.instance.OnMakePlatform();
+        }
     }
 
     void cameraMovement(float xPosition) // here
@@ -32,17 +39,12 @@ public class GameView : SingletonMonoBehavior<GameView> {
 
 
 
-    public Transform SinglePlatformsFactory(float buildInWhere)
-    {
-        Vector3 spawnPoint = new Vector3(buildInWhere,0,0);
-        Transform newPlatform =  (Instantiate(singlePlatform,spawnPoint,Quaternion.identity) as GameObject).transform;
-        return newPlatform;
-    }
 
-    public void displayLevel(int level)
+
+    public void displayLevel(int level)//work
     {
         //display current Level
-        print(level);
+        //print(level);
     }
     /*
 		//move the camera
