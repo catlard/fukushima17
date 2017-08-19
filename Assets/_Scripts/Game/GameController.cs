@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class GameController : SingletonMonoBehavior<GameController> {
 
 	// Use this for initialization
 	void Start () {
-		//GameModel.instance.Init ();
-		//GameView.instance.Init ();
+		GameModel.instance.Init ();
+		GameView.instance.Init ();
 	}
 	
     private float Xpos  = 0;
@@ -15,10 +15,13 @@ public class GameController : SingletonMonoBehavior<GameController> {
 	// Update is called once per frame
 	void Update () {
 		float newX = GameModel.instance.UpdateX ();
+
         GameView.instance.BuildLevelFor(newX);
 
         int level = GameModel.instance.getCurrentLevel();
         GameView.instance.displayLevel(level);
+        GameView.instance.playerEdgeDetermination();
+        GameModel.instance.runningStopTimer();
 
         Xpos = newX;
         testZone();
@@ -51,12 +54,31 @@ public class GameController : SingletonMonoBehavior<GameController> {
 
     }
 
+    public void OnEnterCameraStopPoint()
+    {
+        //通 //work
+        Debug.Log("stop");
+    }
+    public void OnExitCameraStopPoint()
+    {
+        //work
+        GameModel.instance.updateMostRightCameraStopPoint();
+    }
+
+
     void testZone()
     {
+        if (Input.GetKeyDown((KeyCode)97)) 
+        {
+            SceneManager.LoadScene(0);
+            //makePlatformEvent();
+            print("diu u");
+        }
         if (Input.GetKeyDown(KeyCode.L) )
         {
             //makePlatformEvent();
-            print( GameModel.instance.getRandomHeight() );
+            GameModel.instance.setIsCameraStop(false);
+            //print( GameModel.instance.getRandomHeight() );
         }
     }
 

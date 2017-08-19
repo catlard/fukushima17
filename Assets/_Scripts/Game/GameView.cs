@@ -18,13 +18,14 @@ public class GameView : SingletonMonoBehavior<GameView> {
         //move the camera
         //make the platforms and the cats
         cameraMovement(xPosition);
+        GameModel.instance.checkCameraPos();
         buildPlatforms();
     }
 
     void buildPlatforms()
     {
         Bounds b = CameraUtils.OrthographicBounds(Camera.main);
-        if (GameModel.instance.getMostRightPointInPlatformsList() <= b.max.x + 2)
+        if (GameModel.instance.getMostRightPointInPlatformsList() <= b.max.x + 6)
         {
             GameController.instance.OnMakePlatform();
         }
@@ -34,11 +35,50 @@ public class GameView : SingletonMonoBehavior<GameView> {
     {
         //make camera move
 
+
+        if (GameModel.instance.getIsCameraStop() )
+        {
+            return;
+        }
+
         Camera.main.transform.position = new Vector3(xPosition, Camera.main.transform.position.y, Camera.main.transform.position.z);
     }
 
+    public void playerEdgeDetermination()
+    {
+        if (GameModel.instance.getPlayerList().Count <= 0)
+        {
+            return;
+        }
+        foreach (var item in GameModel.instance.getPlayerList() )
+        {
+            if (checkPlayerOutOffCameraEdge(item) )
+            {
+                destroyPlayerMice(item.gameObject);
+                Debug.Log("del player : " + item.gameObject);
+                return;
+                //ondelPlayer
+            }
+        }
+    }
 
+    bool checkPlayerOutOffCameraEdge(Transform trans)
+    {
+        Bounds b = CameraUtils.OrthographicBounds(Camera.main);
+        if (trans.position.x < b.min.x - 1.5 || trans.position.y < b.min.y - 1.5)
+        {
+            return true;
+        }
 
+        return false;
+    }
+
+    private void destroyPlayerMice(GameObject playerMice)
+    {
+        //移除玩家
+        GameModel.instance.removePlayerRegister(playerMice);
+        Destroy(playerMice);
+    }
 
 
     public void displayLevel(int level)//work
