@@ -23,12 +23,11 @@ public class Menu_script : MonoBehaviour
                 
                 //Debug.Log(PlayerData.Static.player_code);
                 //Debug.Log("KeyCode down: " + kcode);
-                /*if (kcode!= PlayerData.Static.player_code)
-                {
-                    Debug.Log("19");
-                }*/
 
             }
+                //Debug.Log(kcode);
+                player_code = kcode;
+
             }
 
         if (Input.GetMouseButtonDown(0))
