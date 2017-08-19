@@ -24,7 +24,7 @@ public class GameView : SingletonMonoBehavior<GameView> {
     void buildPlatforms()
     {
         Bounds b = CameraUtils.OrthographicBounds(Camera.main);
-        if (GameModel.instance.getMostRightPointInPlatformsList() <= b.max.x + 2)
+        if (GameModel.instance.getMostRightPointInPlatformsList() <= b.max.x + 6)
         {
             GameController.instance.OnMakePlatform();
         }

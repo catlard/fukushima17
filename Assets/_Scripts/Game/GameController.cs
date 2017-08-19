@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class GameController : SingletonMonoBehavior<GameController> {
 
 	// Use this for initialization
@@ -53,6 +53,12 @@ public class GameController : SingletonMonoBehavior<GameController> {
 
     void testZone()
     {
+        if (Input.GetKeyDown((KeyCode)97)) 
+        {
+            SceneManager.LoadScene(0);
+            //makePlatformEvent();
+            print("diu u");
+        }
         if (Input.GetKeyDown(KeyCode.L) )
         {
             //makePlatformEvent();
