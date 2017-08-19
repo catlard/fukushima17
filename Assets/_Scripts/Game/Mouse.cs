@@ -10,6 +10,7 @@ public class Mouse : MonoBehaviour {
 	public MouseState _state;
 	private Rigidbody2D _body;
 	private Collider2D _collider;
+	private SpriteRenderer _mouseSprite;
 
 	private CatBellyView _lastBelly;
 
@@ -18,6 +19,7 @@ public class Mouse : MonoBehaviour {
 	}
 
 	public void Init() {
+		_mouseSprite = transform.Find ("Sprite").GetComponent<SpriteRenderer> ();
 		_collider = GetComponent<Collider2D> ();
 		_state = MouseState.LANDED;
 		_body = GetComponent<Rigidbody2D> ();
@@ -29,13 +31,17 @@ public class Mouse : MonoBehaviour {
 		GameObject target = FindNextTarget (tagName);
 		Vector2 data = GetRequiredForce (target);
 
-		//bouncing off cat belly
+//		bouncing off cat belly
 		if (tagName == "Floor") {
-			data *= _lastBelly.GetPower ();
+			float power = _lastBelly.GetPower ();
+
+			if (power > .9f)
+				power = 1;
+
+			data *= power;
 			print ("Mouse landed on belly with " + _lastBelly.GetPower () + " % power.");
 		}
-
-
+			
 		_body.velocity = data;
 	}
 
@@ -56,8 +62,10 @@ public class Mouse : MonoBehaviour {
 	}
 
 	private Vector2 GetRequiredForce(GameObject target) {
-
-		Vector2 finish = PhysicsHelpers.GetParableInitialVelocity (transform.position, target.transform.position);
+		Vector3 myPos = transform.position;
+		myPos.y -= (_mouseSprite.bounds.extents.y) * 1f;
+//		myPos.x = GetComponent<SpriteRenderer> ().bounds.extents.x;
+		Vector2 finish = PhysicsHelpers.GetParableInitialVelocity (myPos, target.transform.position);
 		return finish;
 	}
 
