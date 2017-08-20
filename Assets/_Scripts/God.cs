@@ -3,12 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class God : MonoBehaviour {
+    public static God Static;
 
 	public List<PlayerData> _players; 
 	public int _fakePlayersAtStart = 0;
 
 
 	public void Awake() {
+        if (Static != null)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Static = this;
+        }
+
 		_players = new List<PlayerData> ();
 		DontDestroyOnLoad (gameObject);
 		if (_fakePlayersAtStart < 1)
