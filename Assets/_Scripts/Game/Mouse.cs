@@ -160,6 +160,11 @@ public class Mouse : MonoBehaviour {
 			JumpToTarget ("Floor");
 		}
 
+        if (tag == "cheese")
+        {
+            print("find cheese");
+        }
+
 
 	}
 
