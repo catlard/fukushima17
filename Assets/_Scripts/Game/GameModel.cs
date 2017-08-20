@@ -67,6 +67,16 @@ public class GameModel : SingletonMonoBehavior<GameModel> {
         }
     }
 
+    public void updateCameraWaitingTime()
+    {
+        if (waitingTime <= 3)
+        {
+            return;
+        }
+
+        waitingTime *= 0.9f;
+    }
+
     public int getCurrentLevel()
     {
         //start in level1
