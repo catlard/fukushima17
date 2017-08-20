@@ -66,16 +66,16 @@ public class ResultModel : SingletonMonoBehavior<ResultModel> {
 					player.GetComponentInChildren<TextMesh>().text = Players[i].UP_alphabet;
 					switch (Players[i].hatType) {
 					case HatType.Gentlemen:
-						player.GetComponent<Mouse>()._hat.sprite = _hats [1];
+						player.GetComponent<Mouse>()._hat.sprite = _hats [0];
 						break;
 					case HatType.Roma:
-						player.GetComponent<Mouse>()._hat.sprite = _hats [2];
+						player.GetComponent<Mouse>()._hat.sprite = _hats [1];
 						break;
 					case HatType.Flower:
-						player.GetComponent<Mouse>()._hat.sprite = _hats [3];
+						player.GetComponent<Mouse>()._hat.sprite = _hats [2];
 						break;
 					case HatType.Party:
-						player.GetComponent<Mouse>()._hat.sprite = _hats [4];
+						player.GetComponent<Mouse>()._hat.sprite = _hats [3];
 						break;
 					}
 				}else if((curPlayerCount / 8) % 2 == 1) {
@@ -89,16 +89,16 @@ public class ResultModel : SingletonMonoBehavior<ResultModel> {
 					player.GetComponentInChildren<TextMesh>().text = Players[i].UP_alphabet;
 					switch (Players[i].hatType) {
 					case HatType.Gentlemen:
-						player.GetComponent<Mouse>()._hat.sprite = _hats [1];
+						player.GetComponent<Mouse>()._hat.sprite = _hats [0];
 						break;
 					case HatType.Roma:
-						player.GetComponent<Mouse>()._hat.sprite = _hats [2];
+						player.GetComponent<Mouse>()._hat.sprite = _hats [1];
 						break;
 					case HatType.Flower:
-						player.GetComponent<Mouse>()._hat.sprite = _hats [3];
+						player.GetComponent<Mouse>()._hat.sprite = _hats [2];
 						break;
 					case HatType.Party:
-						player.GetComponent<Mouse>()._hat.sprite = _hats [4];
+						player.GetComponent<Mouse>()._hat.sprite = _hats [3];
 						break;
 					}
 				}	
@@ -114,16 +114,16 @@ public class ResultModel : SingletonMonoBehavior<ResultModel> {
 					player.GetComponentInChildren<TextMesh>().text = Players[i].UP_alphabet;
 					switch (Players[i].hatType) {
 					case HatType.Gentlemen:
-						player.GetComponent<Mouse>()._hat.sprite = _hats [1];
+						player.GetComponent<Mouse>()._hat.sprite = _hats [0];
 						break;
 					case HatType.Roma:
-						player.GetComponent<Mouse>()._hat.sprite = _hats [2];
+						player.GetComponent<Mouse>()._hat.sprite = _hats [1];
 						break;
 					case HatType.Flower:
-						player.GetComponent<Mouse>()._hat.sprite = _hats [3];
+						player.GetComponent<Mouse>()._hat.sprite = _hats [2];
 						break;
 					case HatType.Party:
-						player.GetComponent<Mouse>()._hat.sprite = _hats [4];
+						player.GetComponent<Mouse>()._hat.sprite = _hats [3];
 						break;
 					}
 				}else if((curPlayerCount / 8) % 2 == 1) {
@@ -137,16 +137,16 @@ public class ResultModel : SingletonMonoBehavior<ResultModel> {
 					player.GetComponentInChildren<TextMesh>().text = Players[i].UP_alphabet;
 					switch (Players[i].hatType) {
 					case HatType.Gentlemen:
-						player.GetComponent<Mouse>()._hat.sprite = _hats [1];
+						player.GetComponent<Mouse>()._hat.sprite = _hats [0];
 						break;
 					case HatType.Roma:
-						player.GetComponent<Mouse>()._hat.sprite = _hats [2];
+						player.GetComponent<Mouse>()._hat.sprite = _hats [1];
 						break;
 					case HatType.Flower:
-						player.GetComponent<Mouse>()._hat.sprite = _hats [3];
+						player.GetComponent<Mouse>()._hat.sprite = _hats [2];
 						break;
 					case HatType.Party:
-						player.GetComponent<Mouse>()._hat.sprite = _hats [4];
+						player.GetComponent<Mouse>()._hat.sprite = _hats [3];
 						break;
 					}
 				}	
