@@ -60,15 +60,7 @@ public class Mouse : MonoBehaviour {
 
         if (playerKeycode <= 0)
         {
-            if (Input.GetMouseButtonDown(0) && _state == MouseState.LANDED)
-            {
-                JumpToTarget("CatBelly");
-                _state = MouseState.JUMPING;
-            }
-        }
-        else
-        {
-            if (Input.GetKeyDown(playerKeycode) && _state == MouseState.LANDED)
+			if (Input.GetKeyDown(_myData.player_code) && _state == MouseState.LANDED)
             {
                 JumpToTarget("CatBelly");
                 _state = MouseState.JUMPING;

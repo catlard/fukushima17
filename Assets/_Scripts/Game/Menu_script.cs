@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Menu_script : MonoBehaviour
 {
@@ -41,7 +42,11 @@ public class Menu_script : MonoBehaviour
 
                 if((int)kcode==13)//get enter key
                 {
-                    Debug.Log("enter");
+					
+
+					God.instance._players = _players; // tell god about your problems;
+					SceneManager.LoadScene("Game");
+
 
                 }
 
