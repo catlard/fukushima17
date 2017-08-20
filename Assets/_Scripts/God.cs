@@ -12,7 +12,7 @@ public class God : MonoBehaviour {
 	public void Awake() {
         if (Static != null)
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
         else
         {
