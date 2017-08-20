@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ResultView : SingletonMonoBehavior<ResultView> {
 
@@ -23,9 +24,10 @@ public class ResultView : SingletonMonoBehavior<ResultView> {
 	public Image Player4_Image;
 	public Image Player5_Image;
 
+	private bool canLeave;
 
 	public void Init() {
-
+		canLeave = false;
 	}
 	
 
@@ -39,6 +41,7 @@ public class ResultView : SingletonMonoBehavior<ResultView> {
 	}
 
 	public void ShowScore () {
+		canLeave = true;
 		ShowScorePartical.SetActive (true);
 		TipsPartical.SetActive (true);
 		switch (ResultModel.instance.Players.Count) {
@@ -104,6 +107,13 @@ public class ResultView : SingletonMonoBehavior<ResultView> {
 		ResultModel.instance.CameraMotion ();
 		if (ResultModel.instance.maxScore == ResultModel.instance.GetPlayerByON (1).score) {
 			ShowScore ();
+		}
+
+		if (canLeave == true) {
+			if (Input.GetKeyDown (KeyCode.Return)) {
+				Destroy( GameObject.Find ("God"));
+				SceneManager.LoadScene("Menu");
+			}
 		}
 	}
 
