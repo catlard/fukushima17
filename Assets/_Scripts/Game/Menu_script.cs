@@ -10,7 +10,6 @@ public class Menu_script : MonoBehaviour
     public bool alphabetlock = false;
 	public List<PlayerData> _players = new List<PlayerData>();
     public string keyShow;
-    public GameObject SpawnThePipe;
     public List<Mouse> _mice;
 
 	void Start()
@@ -68,7 +67,6 @@ public class Menu_script : MonoBehaviour
 
 					//we didn't have this keycode yet!
 					if (!found) {//spawn mouse
-                        GameObject SpawnPipe = GameObject.Instantiate(SpawnThePipe);//, position, Quaternion.identity);
                         PlayerData newPlayer = new PlayerData ();
 						newPlayer.player_code = kcode;
 						newPlayer.color = new Color (UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value);
