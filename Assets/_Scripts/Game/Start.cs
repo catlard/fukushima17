@@ -12,4 +12,10 @@ public class Start : MonoBehaviour {
     {
         SceneManager.LoadScene("Menu");
     }
+
+	public void Update() {
+		if (Input.anyKeyDown) {
+			ExitToMenu ();
+		}
+	}
 }
