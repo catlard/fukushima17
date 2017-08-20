@@ -96,7 +96,7 @@ public class GameController : SingletonMonoBehavior<GameController> {
     {
         //通 //work
         Debug.Log("gameover");
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
     }
 
     void testZone()
