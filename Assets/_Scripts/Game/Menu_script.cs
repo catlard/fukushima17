@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class Menu_script : MonoBehaviour
 {
     public bool alphabetlock = false;
+    public bool canvaslock = true;
 	public List<PlayerData> _players = new List<PlayerData>();
     public string keyShow;
     public List<Mouse> _mice;
@@ -17,6 +18,7 @@ public class Menu_script : MonoBehaviour
         _players = new List<PlayerData> ();
 		_mice = new List<Mouse> ();
     }
+
 
 	public void RemoveMouseWithKeycode(KeyCode k) {
 		for (int i = _mice.Count -1; i >= 0; i--) {
@@ -29,8 +31,7 @@ public class Menu_script : MonoBehaviour
 
     public void Update()
     {
-        
-        foreach (KeyCode kcode in Enum.GetValues(typeof(KeyCode)))//Get what key are you pressing
+            foreach (KeyCode kcode in Enum.GetValues(typeof(KeyCode)))//Get what key are you pressing
         {
 			if (Input.GetKeyDown (kcode))
            {
