@@ -9,6 +9,8 @@ public class GameView : SingletonMonoBehavior<GameView> {
     public Transform spawnPointRight;
 
 
+    public List< SpriteRenderer > sprites;
+
     public void Init() {
 		PlatformFactory.instance.Init ();
 
