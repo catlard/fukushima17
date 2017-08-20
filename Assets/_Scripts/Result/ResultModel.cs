@@ -16,6 +16,7 @@ public class ResultModel : SingletonMonoBehavior<ResultModel> {
 	public Transform MainCameraPos;
 	public int maxScore;
 	public GameObject MousePrefab;
+	public Sprite[] _hats = new Sprite[4];
 
 	public void Init() {
 		IsStarted  = false;
@@ -63,7 +64,20 @@ public class ResultModel : SingletonMonoBehavior<ResultModel> {
 					player.transform.Find("Sprite").GetComponent<SpriteRenderer>().color = Players[i].color;
 					player.GetComponent<Rigidbody2D> ().simulated = false;
 					player.GetComponentInChildren<TextMesh>().text = Players[i].UP_alphabet;
-//					player.GetComponent<SpriteRenderer> ().sortingOrder = maxSortingOrder - (curPlayerCount / 8);
+					switch (Players[i].hatType) {
+					case HatType.Gentlemen:
+						player.GetComponent<Mouse>()._hat.sprite = _hats [1];
+						break;
+					case HatType.Roma:
+						player.GetComponent<Mouse>()._hat.sprite = _hats [2];
+						break;
+					case HatType.Flower:
+						player.GetComponent<Mouse>()._hat.sprite = _hats [3];
+						break;
+					case HatType.Party:
+						player.GetComponent<Mouse>()._hat.sprite = _hats [4];
+						break;
+					}
 				}else if((curPlayerCount / 8) % 2 == 1) {
 					GameObject player = Instantiate(MousePrefab, new Vector3((MOUSE_WIDTH * (curPlayerCount % 8)/2f),(curPlayerCount / 8)*MOUSE_HIGHT + MOUSE_Y_OFFSET,0f),Quaternion.identity);
 					PlayerObject.Add (player);
@@ -73,7 +87,20 @@ public class ResultModel : SingletonMonoBehavior<ResultModel> {
 					player.transform.Find("Sprite").GetComponent<SpriteRenderer>().color = Players[i].color;
 					player.GetComponent<Rigidbody2D> ().simulated = false;
 					player.GetComponentInChildren<TextMesh>().text = Players[i].UP_alphabet;
-//					player.GetComponent<SpriteRenderer> ().sortingOrder = maxSortingOrder - (curPlayerCount / 8);
+					switch (Players[i].hatType) {
+					case HatType.Gentlemen:
+						player.GetComponent<Mouse>()._hat.sprite = _hats [1];
+						break;
+					case HatType.Roma:
+						player.GetComponent<Mouse>()._hat.sprite = _hats [2];
+						break;
+					case HatType.Flower:
+						player.GetComponent<Mouse>()._hat.sprite = _hats [3];
+						break;
+					case HatType.Party:
+						player.GetComponent<Mouse>()._hat.sprite = _hats [4];
+						break;
+					}
 				}	
 			}else if ((curPlayerCount % 8) % 2 == 1) {
 				if ((curPlayerCount / 8) % 2 == 0) {
@@ -85,7 +112,20 @@ public class ResultModel : SingletonMonoBehavior<ResultModel> {
 					player.transform.Find("Sprite").GetComponent<SpriteRenderer>().color = Players[i].color;
 					player.GetComponent<Rigidbody2D> ().simulated = false;
 					player.GetComponentInChildren<TextMesh>().text = Players[i].UP_alphabet;
-//					player.GetComponent<SpriteRenderer> ().sortingOrder = maxSortingOrder - (curPlayerCount / 8);
+					switch (Players[i].hatType) {
+					case HatType.Gentlemen:
+						player.GetComponent<Mouse>()._hat.sprite = _hats [1];
+						break;
+					case HatType.Roma:
+						player.GetComponent<Mouse>()._hat.sprite = _hats [2];
+						break;
+					case HatType.Flower:
+						player.GetComponent<Mouse>()._hat.sprite = _hats [3];
+						break;
+					case HatType.Party:
+						player.GetComponent<Mouse>()._hat.sprite = _hats [4];
+						break;
+					}
 				}else if((curPlayerCount / 8) % 2 == 1) {
 					GameObject player = Instantiate(MousePrefab, new Vector3(0f-(MOUSE_WIDTH * (curPlayerCount % 8)/2f)-(MOUSE_WIDTH/2f),(curPlayerCount / 8)*MOUSE_HIGHT + MOUSE_Y_OFFSET,0f),Quaternion.identity);
 					PlayerObject.Add (player);
@@ -95,7 +135,20 @@ public class ResultModel : SingletonMonoBehavior<ResultModel> {
 					player.transform.Find("Sprite").GetComponent<SpriteRenderer>().color = Players[i].color;
 					player.GetComponent<Rigidbody2D> ().simulated = false;
 					player.GetComponentInChildren<TextMesh>().text = Players[i].UP_alphabet;
-//					player.GetComponent<SpriteRenderer> ().sortingOrder = maxSortingOrder - (curPlayerCount / 8);
+					switch (Players[i].hatType) {
+					case HatType.Gentlemen:
+						player.GetComponent<Mouse>()._hat.sprite = _hats [1];
+						break;
+					case HatType.Roma:
+						player.GetComponent<Mouse>()._hat.sprite = _hats [2];
+						break;
+					case HatType.Flower:
+						player.GetComponent<Mouse>()._hat.sprite = _hats [3];
+						break;
+					case HatType.Party:
+						player.GetComponent<Mouse>()._hat.sprite = _hats [4];
+						break;
+					}
 				}	
 			}
 			curPlayerCount++;

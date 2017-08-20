@@ -10,6 +10,7 @@ public class GameView : SingletonMonoBehavior<GameView> {
 
 
     public List< Sprite > sprites;
+    public GameObject cheese;
 
     public void Init() {
 		PlatformFactory.instance.Init ();
@@ -129,10 +130,16 @@ public class GameView : SingletonMonoBehavior<GameView> {
         CatSpeedController catSpeedSetUp = GameModel.instance.getListPlatformsList()[GameModel.instance.getListPlatformsList().Count-1].gameObject.GetComponentInChildren<CatSpeedController>();
         if (catSpeedSetUp != null)
         {
-            float newSpeed = GameModel.instance.getCurrentLevel()*0.5f; //speedhere
+            float newSpeed =  (GameModel.instance.getCurrentLevel()*(0.25f+(Random.Range(-5,5)/10.0f) ) ); //speedhere
             catSpeedSetUp.ChangeSpeed(newSpeed);
             print("get!");
         }
+    }
+
+    public void buildCheese(Transform spawnpoint)
+    {
+        GameObject cheeseObject = Instantiate(cheese, spawnpoint);
+        cheeseObject.transform.localPosition = new Vector3();
     }
 
     private void InitializedAllPlayer()

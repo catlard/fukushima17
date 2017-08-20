@@ -44,7 +44,27 @@ public class GameController : SingletonMonoBehavior<GameController> {
         cabinetTran.position = new Vector3(cabinetTran.position.x, newCabinetHeight, cabinetTran.position.z);
 
         GameModel.instance.registerNewPlatformToList(newPlatform);
-        
+
+        //spawncheese
+
+        Transform cheesePoint = null;
+        foreach (Transform child in newPlatform)
+        {
+            if (child.gameObject.tag == "bookShelfheight")
+            {
+                foreach (Transform childy in child)
+                {
+                    if (childy.gameObject.tag == "cheeseSpawnPoint")
+                    {
+                        cheesePoint = childy.transform;
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+
+        GameView.instance.buildCheese(cheesePoint);
 
 
 
@@ -76,7 +96,7 @@ public class GameController : SingletonMonoBehavior<GameController> {
     {
         //通 //work
         Debug.Log("gameover");
-        //SceneManager.LoadScene(2);
+        SceneManager.LoadScene(2);
     }
 
     void testZone()

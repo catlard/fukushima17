@@ -35,22 +35,6 @@ public class Menu_script : MonoBehaviour
         {
 			if (Input.GetKeyDown (kcode))
            {
-                //Debug.Log(keyShow);
-                if((int)kcode==27)//get escape key
-                {
-                    Debug.Log("esc");
-                }
-
-                if((int)kcode==13)//get enter key
-                {
-					
-
-					GameObject.Find("God").GetComponent<God>()._players = _players; // tell god about your problems;
-					SceneManager.LoadScene("Game");
-
-
-                }
-
 				//search for keycodes.
 				if ((int)kcode >= 97 && (int)kcode <= 122) {// only alphabet 
 					bool found = false;
@@ -61,25 +45,36 @@ public class Menu_script : MonoBehaviour
 							_players.Remove (p);
 							found = true;
 							RemoveMouseWithKeycode (kcode);
-						
+							SoundLibrary.instance.PlaySound(new SoundParams("mouse_dead", .25f, .25f, 1));
 
 						}
 					}
 
 					//we didn't have this keycode yet!
 					if (!found) {//spawn mouse
-                        
+						SoundLibrary.instance.PlaySound(new SoundParams("mouse_" + UnityEngine.Random.Range(1, 6), .25f, 1, 1));
                         //GameObject SpawnPipe = GameObject.Instantiate(SpawnThePipe, new Vector3(position.x, 0, position.z), Quaternion.identity);
                         PlayerData newPlayer = new PlayerData ();
 						newPlayer.player_code = kcode;
 						newPlayer.color = new Color (UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value);
 						newPlayer.UP_alphabet = keyShow;
+						newPlayer.hatType = (HatType)UnityEngine.Random.Range (0, 4);
 						_players.Add (newPlayer);
 						Mouse newMouse = MouseFactory.instance.makeMouse (newPlayer);
 						_mice.Add (newMouse);
 					}
 				}
+
+				if (_players.Count > 1) {
+					GameObject.Find ("God").GetComponent<God> ()._players = _players; // tell god about your problems;
+					CountdownManager.instance.StartCountdown ();
+				} else {
+					CountdownManager.instance.StopCountdown ();
+				}
+
             }
+
+
         }
     }
 }
