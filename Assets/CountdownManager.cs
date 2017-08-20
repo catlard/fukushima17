@@ -20,6 +20,7 @@ public class CountdownManager : SingletonMonoBehavior<CountdownManager> {
 
 
 	public void StartCountdown() {
+		_text.GetComponent<MeshRenderer> ().sortingLayerName = "count";
 		StopCountdown ();
 		StartCoroutine ("CountdownRoutine");
 	}
