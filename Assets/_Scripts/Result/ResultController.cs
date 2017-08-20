@@ -5,6 +5,7 @@ using System;
 
 public class ResultController : SingletonMonoBehavior<ResultController> {
 
+	private float timer;
 
 	void Start () {
 		ResultModel.instance.Init ();
@@ -18,13 +19,24 @@ public class ResultController : SingletonMonoBehavior<ResultController> {
 
 
 	void Update () {
-		foreach(KeyCode kcode in Enum.GetValues(typeof(KeyCode)))
-		{
-			if (Input.GetKeyDown (kcode)) {
-				ResultModel.instance.PlusCheese (kcode);
+//		foreach(KeyCode kcode in Enum.GetValues(typeof(KeyCode)))
+//		{
+//			if (Input.GetKeyDown (kcode)) {
+//				ResultModel.instance.PlusCheese (kcode);
+//				ResultView.instance.UpdateComera ();
+//			}
+//		}
+
+
+		if (timer > 0.2f) {
+			foreach(PlayerData data in ResultModel.instance.Players)
+			{
+				ResultModel.instance.PlusCheese (data.player_code);
 				ResultView.instance.UpdateComera ();
 			}
+			timer = 0f;
 		}
+		timer += Time.deltaTime;
 
 	}
 
