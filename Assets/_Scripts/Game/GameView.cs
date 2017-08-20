@@ -20,7 +20,7 @@ public class GameView : SingletonMonoBehavior<GameView> {
 
 
 
-		foreach (PlayerData d in GameObject.Find("God").GetComponent<God>()._players)
+		foreach (PlayerData d in God.Static._players)
         {
 			Mouse m = (MouseFactory.instance.makeMouse(d));
 			GameController.instance.OnMakeMouse (m);
