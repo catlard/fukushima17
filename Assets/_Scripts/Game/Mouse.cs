@@ -11,6 +11,7 @@ public class Mouse : MonoBehaviour {
 	private Rigidbody2D _body;
 	private Collider2D _collider;
 	private SpriteRenderer _mouseSprite;
+	public PlayerData _myData;
 
 	private CatBellyView _lastBelly;
 
