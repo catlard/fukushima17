@@ -52,6 +52,11 @@ public class Mouse : MonoBehaviour {
 
 			data *= power;
 			print ("Mouse landed on belly with " + _lastBelly.GetPower () + " % power.");
+			SoundLibrary.instance.PlaySound (new SoundParams ("mouse_jump", .1f, .4f, 1));
+
+		} else {
+			SoundLibrary.instance.PlaySound (new SoundParams ("mouse_" + (UnityEngine.Random.Range(0, 6).ToString()), .2f, .8f, 1));
+
 		}
 
 		_mouseSprite.sprite = _up;
@@ -101,8 +106,8 @@ public class Mouse : MonoBehaviour {
 
 	private Vector2 GetRequiredForce(GameObject target) {
 		Vector3 myPos = transform.position;
-		myPos.y -= (_mouseSprite.bounds.extents.y) * 1f;
-//		myPos.x = GetComponent<SpriteRenderer> ().bounds.extents.x;
+		myPos.y -= (_mouseSprite.bounds.extents.y) * .5f;
+		myPos.x -= (_mouseSprite.bounds.extents.x * UnityEngine.Random.value);
 		Vector2 finish = PhysicsHelpers.GetParableInitialVelocity (myPos, target.transform.position);
 		return finish;
 	}
@@ -154,6 +159,11 @@ public class Mouse : MonoBehaviour {
 			_lastBelly = c.gameObject.GetComponent<CatBellyView> ();
 			JumpToTarget ("Floor");
 		}
+
+        if (tag == "cheese")
+        {
+            print("find cheese");
+        }
 
 
 	}
