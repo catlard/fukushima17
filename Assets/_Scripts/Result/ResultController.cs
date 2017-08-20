@@ -22,6 +22,7 @@ public class ResultController : SingletonMonoBehavior<ResultController> {
 		{
 			if (Input.GetKeyDown (kcode)) {
 				ResultModel.instance.PlusCheese (kcode);
+				ResultView.instance.UpdateComera ();
 			}
 		}
 
