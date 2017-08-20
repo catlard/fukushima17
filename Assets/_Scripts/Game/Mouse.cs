@@ -20,6 +20,9 @@ public class Mouse : MonoBehaviour {
 	public Sprite _down;
 	public Sprite _top;
 
+	public GameObject _hat_obj;
+	public SpriteRenderer _hat;
+
 	private bool _animatingTop = false;
 
 
@@ -35,6 +38,7 @@ public class Mouse : MonoBehaviour {
 		_body = GetComponent<Rigidbody2D> ();
 
 		_mouseSprite.sprite = _sit;
+		_hat_obj.transform.localPosition = new Vector3 (0.5f, 0.9f, 0f);
 	}
 
 
@@ -60,6 +64,7 @@ public class Mouse : MonoBehaviour {
 		}
 
 		_mouseSprite.sprite = _up;
+		_hat_obj.transform.localPosition = new Vector3 (0f, 0f, 0f);
 			
 		_body.velocity = data;
 	}
@@ -99,8 +104,10 @@ public class Mouse : MonoBehaviour {
 			yield break;
 		_animatingTop = true;
 		_mouseSprite.sprite = _top;
+		_hat_obj.transform.localPosition = new Vector3 (0f, 0f, 0f);
 		yield return new WaitForSeconds(UnityEngine.Random.Range(.25f, .4f));
 		_mouseSprite.sprite = _down;
+		_hat_obj.transform.localPosition = new Vector3 (0f, 0f, 0f);
 		_animatingTop = false;
 	}
 
@@ -145,6 +152,7 @@ public class Mouse : MonoBehaviour {
         _body.transform.eulerAngles = Vector3.zero;
         _body.angularVelocity = 0;
 		_mouseSprite.sprite = _sit;
+		_hat_obj.transform.localPosition = new Vector3 (0.5f, 0.9f, 0f);
     }
 
 	public void OnCollisionEnter2D(Collision2D c) {
