@@ -65,6 +65,11 @@ public class GameController : SingletonMonoBehavior<GameController> {
         GameModel.instance.updateMostRightCameraStopPoint();
     }
 
+    public void OnGameOver()
+    {
+        //通 //work
+        Debug.Log("gameover");
+    }
 
     void testZone()
     {

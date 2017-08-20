@@ -56,10 +56,24 @@ public class GameView : SingletonMonoBehavior<GameView> {
             {
                 destroyPlayerMice(item.gameObject);
                 Debug.Log("del player : " + item.gameObject);
+                gameoverDetermination();
                 return;
                 //ondelPlayer
             }
         }
+    }
+
+    public bool gameoverDetermination()
+    {
+        if (GameModel.instance.getPlayerList().Count > 0)
+        {
+            // not gameover
+            return false;
+        }
+
+        //yes no player left
+        GameController.instance.OnGameOver();
+        return true;
     }
 
     bool checkPlayerOutOffCameraEdge(Transform trans)
