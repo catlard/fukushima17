@@ -57,6 +57,7 @@ public class Menu_script : MonoBehaviour
 						newPlayer.player_code = kcode;
 						newPlayer.color = new Color (UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value);
 						newPlayer.UP_alphabet = keyShow;
+						newPlayer.hatType = (HatType)UnityEngine.Random.Range (0, 4);
 						_players.Add (newPlayer);
 						Mouse newMouse = MouseFactory.instance.makeMouse (newPlayer);
 						_mice.Add (newMouse);
