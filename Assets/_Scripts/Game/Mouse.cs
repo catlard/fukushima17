@@ -55,7 +55,7 @@ public class Mouse : MonoBehaviour {
 				power = 1;
 
 			data *= power;
-			print ("Mouse landed on belly with " + _lastBelly.GetPower () + " % power.");
+//			print ("Mouse landed on belly with " + _lastBelly.GetPower () + " % power.");
 			SoundLibrary.instance.PlaySound (new SoundParams ("mouse_jump", .1f, .4f, 1));
 
 		} else {
@@ -85,7 +85,6 @@ public class Mouse : MonoBehaviour {
 //		print ("0000000");
 //
 		if (_body.velocity.y < .5f && _body.velocity.y > 0 && !_animatingTop &&  _state == MouseState.JUMPING) {
-			print ("DID TOP ANIM");
 			StopCoroutine ("DoTopAnim");
 			StartCoroutine ("DoTopAnim");
 		}

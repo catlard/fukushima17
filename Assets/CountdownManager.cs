@@ -6,46 +6,48 @@ using UnityEngine.SceneManagement;
 
 public class CountdownManager : SingletonMonoBehavior<CountdownManager> {
 
-	private  TextMesh _text;
-	public int _maxCount = 3;
+	private  SpriteRenderer _text;
+	public int _maxCount = 1;
 	private float _maxScale = 2;
-	private float _moveDist;
+	public float _moveDist;
+
+	public Sprite[] _images;
 
 	public void Start() {
-		_text = transform.Find ("Text").GetComponent<TextMesh> ();
-		_text.text = "";
+		_text = transform.Find ("Text").GetComponent<SpriteRenderer> ();
+		_text.sprite = null;
 		_moveDist = CameraUtils.OrthographicBounds (Camera.main).extents.x * 1.5f;
 
 	}
 
 
 	public void StartCountdown() {
-		_text.GetComponent<MeshRenderer> ().sortingLayerName = "count";
+//		_text.GetComponent<SpriteRenderer> ().sortingLayerName = "count";
 		StopCountdown ();
 		StartCoroutine ("CountdownRoutine");
 	}
 
 	private IEnumerator CountdownRoutine() {
-		print ("STARTED");
-		_text.text = "";
+//		print ("STARTED");
+		_text.sprite = null;
 
 		yield return new WaitForSeconds (3);
 
 		for (int i = 0; i < _maxCount; i++) {
-			yield return StartCoroutine ("ChangeText", (_maxCount - i).ToString ());
+			yield return StartCoroutine ("ChangeText", i);
 		}
 
-		yield return ChangeText ("GO!");
+		yield return ChangeText (3);
 		CountdownFinished ();
 	}
 
 
-	private IEnumerator ChangeText(string newText) {
+	private IEnumerator ChangeText(int newText) {
 		_text.transform.DOMoveX (-_moveDist, .5f).SetEase (Ease.InBack);
 		yield return new WaitForSeconds (.5f);
 		_text.transform.position = new Vector3 (_moveDist, 0, 0);
-		_text.text = newText;
-		_text.color = newText == "GO!" ? Color.red : Color.green;
+		_text.sprite = _images[newText];
+//		_text.color = newText == "GO!" ? Color.red : Color.green;
 		_text.transform.DOMoveX (0, .5f).SetEase (Ease.OutBack);
 		yield return new WaitForSeconds (.5f);
 		SoundLibrary.instance.PlaySound (new SoundParams ("mouse_jump", .25f, 1, 1));
@@ -59,7 +61,7 @@ public class CountdownManager : SingletonMonoBehavior<CountdownManager> {
 
 	private void CountdownFinished() {
 
-		print ("COUNTDOWN WAS FINISHED");
+//		print ("COUNTDOWN WAS FINISHED");
 		SceneManager.LoadScene("Game");
 
 	}
