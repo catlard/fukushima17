@@ -15,7 +15,6 @@ public class Mouse : MonoBehaviour {
 
 	private CatBellyView _lastBelly;
 
-    public KeyCode playerKeycode;
 
 	public void Start() {
 		Init ();
@@ -58,14 +57,12 @@ public class Mouse : MonoBehaviour {
 			gameObject.layer = LayerMask.NameToLayer ("Default");
 		}
 
-        if (playerKeycode <= 0)
-        {
+
 			if (Input.GetKeyDown(_myData.player_code) && _state == MouseState.LANDED)
             {
                 JumpToTarget("CatBelly");
                 _state = MouseState.JUMPING;
             }
-        }
 
 
 	}

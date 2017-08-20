@@ -11,6 +11,7 @@ public class GameModel : SingletonMonoBehavior<GameModel> {
     private float _currentTimePass = 0;
     private Vector3 _lastplayformRightPoint; //最右最前的平台最右的點
 
+
     public List<Transform> _platformsList; //所有平台的array
     public List<Transform> _playerList;
 
@@ -25,8 +26,6 @@ public class GameModel : SingletonMonoBehavior<GameModel> {
 	public void Init() {
         _currentTimePass = 0;
         _currentLevel = 0;
-        findAllPlayer();
-
 
     }
 
@@ -39,6 +38,10 @@ public class GameModel : SingletonMonoBehavior<GameModel> {
             _playerList.Add(item.transform);
         }
     }
+    
+
+
+
 
     public void removePlayerRegister(GameObject go)
     {

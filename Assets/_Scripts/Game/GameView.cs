@@ -5,13 +5,33 @@ using UnityEngine;
 public class GameView : SingletonMonoBehavior<GameView> {
     public GameObject singlePlatform;
 
-    public Transform playerDataBaseObject;
+    public Transform spawnPoint;
 
 	public void Init() {
 		PlatformFactory.instance.Init ();
+        buildAllPlayer();
+        resetAllPlayerPos();
     }
 
- public void BuildLevelFor(float xPosition) {
+    public void buildAllPlayer()
+    {
+        foreach (var item in God.instance._players)
+        {
+            MouseFactory.instance.makeMouse(item);
+
+        }
+        GameModel.instance.findAllPlayer();
+    }
+
+    public void resetAllPlayerPos()
+    {
+        foreach (var item in GameModel.instance._playerList)
+        {
+            item.position = spawnPoint.position;
+        }
+    }
+
+    public void BuildLevelFor(float xPosition) {
         //move the camera
         //make the platforms and the cats
         cameraMovement(xPosition);
