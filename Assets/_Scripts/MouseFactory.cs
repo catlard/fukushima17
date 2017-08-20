@@ -17,7 +17,7 @@ public class MouseFactory : SingletonMonoBehavior<MouseFactory> {
 		if (oldMouseColliders == null)
 			init ();
 
-        Vector3 position = new Vector3(Random.Range(-5.0f, 5.0f), 5.0f, 0);
+        Vector3 position = new Vector3(Random.Range(-7.0f, 7.0f), 5.0f, 0);
         GameObject new_mouse = GameObject.Instantiate(_mousePrefab, position,Quaternion.identity);
         SpriteRenderer r = new_mouse.transform.Find("Sprite").GetComponent<SpriteRenderer>();
         TextMesh s = new_mouse.GetComponentInChildren<TextMesh>();

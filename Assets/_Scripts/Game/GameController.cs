@@ -68,6 +68,7 @@ public class GameController : SingletonMonoBehavior<GameController> {
     {
         //work
         GameModel.instance.updateMostRightCameraStopPoint();
+        GameModel.instance.waitingTime *= 0.9f;
     }
 
     public void OnGameOver()

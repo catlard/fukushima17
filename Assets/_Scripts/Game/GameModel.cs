@@ -19,7 +19,7 @@ public class GameModel : SingletonMonoBehavior<GameModel> {
     bool _isCameraStop;
     bool _isGameOver;
     [SerializeField]
-     float waitingTime;
+     public float waitingTime;
     float _currentTimer;
 
 

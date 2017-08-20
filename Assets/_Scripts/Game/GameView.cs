@@ -14,6 +14,8 @@ public class GameView : SingletonMonoBehavior<GameView> {
 
 		buildAllPlayer();
         resetAllPlayerPos();
+
+		SoundLibrary.instance.PlaySound (new SoundParams("BGM", 0, .05f, -1));
     }
 
 	public void buildAllPlayer()
@@ -116,6 +118,8 @@ public class GameView : SingletonMonoBehavior<GameView> {
         //移除玩家
         GameModel.instance.removePlayerRegister(m);
 		Destroy(m.gameObject);
+		SoundLibrary.instance.PlaySound (new SoundParams ("mouse_dead", .1f, 1, 1));
+		
     }
 
     private void InitializedAllPlayer()
