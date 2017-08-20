@@ -17,9 +17,6 @@ public class GameView : SingletonMonoBehavior<GameView> {
 
 	public void buildAllPlayer()
     {
-
-
-
 		foreach (PlayerData d in God.Static._players)
         {
 			Mouse m = (MouseFactory.instance.makeMouse(d));
