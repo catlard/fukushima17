@@ -7,7 +7,13 @@ public class CatSpeedController : MonoBehaviour {
 	public float _speedMult = 1f;
 	public Animator _animator;
 
-	public void ChangeSpeed(float newSpeed) {
+    private void Start()
+    {
+        ChangeSpeed(1);
+    }
+
+
+    public void ChangeSpeed(float newSpeed) {
 		_speedMult = newSpeed;
 		_animator.SetFloat("speed", newSpeed);
 	}

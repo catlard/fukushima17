@@ -67,6 +67,7 @@ public class GameController : SingletonMonoBehavior<GameController> {
     public void OnExitCameraStopPoint()
     {
         //work
+        GameView.instance.updateCatAniSpeed();
         GameModel.instance.updateMostRightCameraStopPoint();
         GameModel.instance.updateCameraWaitingTime();
     }
@@ -75,7 +76,7 @@ public class GameController : SingletonMonoBehavior<GameController> {
     {
         //通 //work
         Debug.Log("gameover");
-        SceneManager.LoadScene(2);
+        //SceneManager.LoadScene(2);
     }
 
     void testZone()
