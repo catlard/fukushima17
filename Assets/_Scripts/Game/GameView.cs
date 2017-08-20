@@ -26,6 +26,9 @@ public class GameView : SingletonMonoBehavior<GameView> {
 		foreach (PlayerData d in God.Static._players)
         {
 			Mouse m = (MouseFactory.instance.makeMouse(d));
+
+			m.transform.Find ("label").gameObject.SetActive (false);
+
 			GameController.instance.OnMakeMouse (m);
         }
 

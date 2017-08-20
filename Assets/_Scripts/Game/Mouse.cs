@@ -64,7 +64,7 @@ public class Mouse : MonoBehaviour {
 		}
 
 		_mouseSprite.sprite = _up;
-		_hat_obj.transform.localPosition = new Vector3 (0f, 0f, 0f);
+		_hat_obj.transform.localPosition = new Vector3 (0f, 1.25f, 0f);
 			
 		_body.velocity = data;
 	}
