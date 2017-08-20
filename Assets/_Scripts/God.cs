@@ -32,9 +32,8 @@ public class God : MonoBehaviour {
 
 		for (int i = 0; i < howMany; i++) {
 			PlayerData d = new PlayerData ();
-			d.color = new Color (Random.value, Random.value, Random.value);
-
-			d.player_code = (KeyCode) ((int) KeyCode.A + i);
+			//d.color = new Color (Random.value, Random.value, Random.value);
+			d.player_code = (KeyCode) (i + 40);
 			print ("GOD: Made fake player with code: " + d.player_code);
 			d.score = Random.Range (1, 10);
 			_players.Add (d);
