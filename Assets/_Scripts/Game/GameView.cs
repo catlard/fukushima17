@@ -124,6 +124,17 @@ public class GameView : SingletonMonoBehavior<GameView> {
 		
     }
 
+    public void updateCatAniSpeed()
+    {
+        CatSpeedController catSpeedSetUp = GameModel.instance.getListPlatformsList()[GameModel.instance.getListPlatformsList().Count-1].gameObject.GetComponentInChildren<CatSpeedController>();
+        if (catSpeedSetUp != null)
+        {
+            float newSpeed =  (GameModel.instance.getCurrentLevel()*(0.25f+(Random.Range(-5,5)/10.0f) ) ); //speedhere
+            catSpeedSetUp.ChangeSpeed(newSpeed);
+            print("get!");
+        }
+    }
+
     private void InitializedAllPlayer()
     {
         //PlayerData PD = playerDataBaseObject.GetComponent<PlayerData>();

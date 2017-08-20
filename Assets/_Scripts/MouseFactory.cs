@@ -5,7 +5,8 @@ using UnityEngine;
 public class MouseFactory : SingletonMonoBehavior<MouseFactory> {
     public GameObject _mousePrefab;
 
-	public List<CircleCollider2D> oldMouseColliders;
+
+    public List<CircleCollider2D> oldMouseColliders;
 
     public void init()
     {
@@ -18,7 +19,7 @@ public class MouseFactory : SingletonMonoBehavior<MouseFactory> {
 			init ();
 
         Vector3 position = new Vector3(Random.Range(-7.0f, 7.0f),8f, 0);
-        GameObject new_mouse = GameObject.Instantiate(_mousePrefab, position,Quaternion.identity);
+        GameObject new_mouse = GameObject.Instantiate(_mousePrefab, new Vector3(position.x,position.y,position.z),Quaternion.identity);
         SpriteRenderer r = new_mouse.transform.Find("Sprite").GetComponent<SpriteRenderer>();
         TextMesh s = new_mouse.GetComponentInChildren<TextMesh>();
 		Mouse m = new_mouse.GetComponent<Mouse> ();
