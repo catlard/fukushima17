@@ -189,7 +189,9 @@ public class Mouse : MonoBehaviour {
         {
             if (_myData.player_code == God.Static._players[i].player_code)
             {
-                God.Static._players[i].score = _myData.score;
+				PlayerData d = God.Static._players [i];
+				d.score = _myData.score;
+				God.Static._players [i] = d;
                 return;
             }
         }
