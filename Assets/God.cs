@@ -8,7 +8,7 @@ public class God : SingletonMonoBehavior<God> {
 	public int _fakePlayersAtStart = 0;
 
 
-	public void Start() {
+	public void Awake() {
 		DontDestroyOnLoad (gameObject);
 		if (_fakePlayersAtStart < 1)
 			return;
