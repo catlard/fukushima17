@@ -6,9 +6,10 @@ public class GameView : SingletonMonoBehavior<GameView> {
     public GameObject singlePlatform;
 
     public Transform spawnPoint;
+    public Transform spawnPointRight;
 
 
-	public void Init() {
+    public void Init() {
 		PlatformFactory.instance.Init ();
 
 		buildAllPlayer();
@@ -17,9 +18,6 @@ public class GameView : SingletonMonoBehavior<GameView> {
 
 	public void buildAllPlayer()
     {
-
-
-
 		foreach (PlayerData d in God.Static._players)
         {
 			Mouse m = (MouseFactory.instance.makeMouse(d));
@@ -34,7 +32,9 @@ public class GameView : SingletonMonoBehavior<GameView> {
     {
         foreach (Mouse m in GameModel.instance._playerList)
         {
-            m.transform.position = spawnPoint.position;
+            float randomX = Random.Range(spawnPointRight.position.x , spawnPoint.position.x) ;
+
+            m.transform.position =new Vector3(randomX,spawnPoint.position.y,spawnPoint.position.z);
         }
     }
 

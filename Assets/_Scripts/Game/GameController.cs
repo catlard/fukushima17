@@ -74,10 +74,12 @@ public class GameController : SingletonMonoBehavior<GameController> {
     {
         //通 //work
         Debug.Log("gameover");
+        SceneManager.LoadScene(2);
     }
 
     void testZone()
     {
+        /*
         if (Input.GetKeyDown((KeyCode)97)) 
         {
             SceneManager.LoadScene(0);
@@ -90,6 +92,7 @@ public class GameController : SingletonMonoBehavior<GameController> {
             GameModel.instance.setIsCameraStop(false);
             //print( GameModel.instance.getRandomHeight() );
         }
+        */
     }
 
 
