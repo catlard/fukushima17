@@ -14,6 +14,8 @@ public class Mouse : MonoBehaviour {
 
 	private CatBellyView _lastBelly;
 
+    public KeyCode playerKeycode;
+
 	public void Start() {
 		Init ();
 	}
@@ -55,10 +57,24 @@ public class Mouse : MonoBehaviour {
 			gameObject.layer = LayerMask.NameToLayer ("Default");
 		}
 
-		if (Input.GetMouseButtonDown (0) && _state == MouseState.LANDED) {
-			JumpToTarget ("CatBelly");
-			_state = MouseState.JUMPING;
-		}
+        if (playerKeycode <= 0)
+        {
+            if (Input.GetMouseButtonDown(0) && _state == MouseState.LANDED)
+            {
+                JumpToTarget("CatBelly");
+                _state = MouseState.JUMPING;
+            }
+        }
+        else
+        {
+            if (Input.GetKeyDown(playerKeycode) && _state == MouseState.LANDED)
+            {
+                JumpToTarget("CatBelly");
+                _state = MouseState.JUMPING;
+            }
+        }
+
+
 	}
 
 	private Vector2 GetRequiredForce(GameObject target) {

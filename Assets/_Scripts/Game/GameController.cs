@@ -57,7 +57,7 @@ public class GameController : SingletonMonoBehavior<GameController> {
     public void OnEnterCameraStopPoint()
     {
         //通 //work
-        Debug.Log("stop");
+        //Debug.Log("stop");
     }
     public void OnExitCameraStopPoint()
     {

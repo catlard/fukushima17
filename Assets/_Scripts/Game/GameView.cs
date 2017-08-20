@@ -5,10 +5,7 @@ using UnityEngine;
 public class GameView : SingletonMonoBehavior<GameView> {
     public GameObject singlePlatform;
 
-
-
-	private float _spaceBetweenPlatforms = 6;
-	private float _spaceBetweenCats = 6;
+    public Transform playerDataBaseObject;
 
 	public void Init() {
 		PlatformFactory.instance.Init ();
@@ -94,6 +91,11 @@ public class GameView : SingletonMonoBehavior<GameView> {
         Destroy(playerMice);
     }
 
+    private void InitializedAllPlayer()
+    {
+        //PlayerData PD = playerDataBaseObject.GetComponent<PlayerData>();
+
+    }
 
     public void displayLevel(int level)//work
     {
