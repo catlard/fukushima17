@@ -15,16 +15,26 @@ public class Mouse : MonoBehaviour {
 
 	private CatBellyView _lastBelly;
 
+	public Sprite _sit;
+	public Sprite _up;
+	public Sprite _down;
+	public Sprite _top;
+
+	private bool _animatingTop = false;
+
 
 	public void Start() {
 		Init ();
 	}
 
 	public void Init() {
+		
 		_mouseSprite = transform.Find ("Sprite").GetComponent<SpriteRenderer> ();
 		_collider = GetComponent<Collider2D> ();
 		_state = MouseState.LANDED;
 		_body = GetComponent<Rigidbody2D> ();
+
+		_mouseSprite.sprite = _sit;
 	}
 
 
@@ -43,6 +53,8 @@ public class Mouse : MonoBehaviour {
 			data *= power;
 			print ("Mouse landed on belly with " + _lastBelly.GetPower () + " % power.");
 		}
+
+		_mouseSprite.sprite = _up;
 			
 		_body.velocity = data;
 	}
@@ -57,14 +69,34 @@ public class Mouse : MonoBehaviour {
 			gameObject.layer = LayerMask.NameToLayer ("Default");
 		}
 
+//		print (_state);
+//		print (_animatingTop);
+//		print (_body.velocity.y);
+//		print ("0000000");
+//
+		if (_body.velocity.y < .5f && _body.velocity.y > 0 && !_animatingTop &&  _state == MouseState.JUMPING) {
+			print ("DID TOP ANIM");
+			StopCoroutine ("DoTopAnim");
+			StartCoroutine ("DoTopAnim");
+		}
+			
+		if (Input.GetKeyDown(_myData.player_code) && _state == MouseState.LANDED)
+        {
+            JumpToTarget("CatBelly");
+            _state = MouseState.JUMPING;
+        }
 
-			if (Input.GetKeyDown(_myData.player_code) && _state == MouseState.LANDED)
-            {
-                JumpToTarget("CatBelly");
-                _state = MouseState.JUMPING;
-            }
 
+	}
 
+	private IEnumerator DoTopAnim() {
+		if (_animatingTop)
+			yield break;
+		_animatingTop = true;
+		_mouseSprite.sprite = _top;
+		yield return new WaitForSeconds(UnityEngine.Random.Range(.25f, .4f));
+		_mouseSprite.sprite = _down;
+		_animatingTop = false;
 	}
 
 	private Vector2 GetRequiredForce(GameObject target) {
@@ -100,11 +132,14 @@ public class Mouse : MonoBehaviour {
 
     void OnLanded()
     {
+		StopCoroutine ("DoTopAnim");
+		_animatingTop = false;
         _state = MouseState.LANDED;
         _body.bodyType = RigidbodyType2D.Kinematic;
         _body.velocity = Vector2.zero;
         _body.transform.eulerAngles = Vector3.zero;
         _body.angularVelocity = 0;
+		_mouseSprite.sprite = _sit;
     }
 
 	public void OnCollisionEnter2D(Collision2D c) {
