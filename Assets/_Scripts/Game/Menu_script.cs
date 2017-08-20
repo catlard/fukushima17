@@ -44,7 +44,7 @@ public class Menu_script : MonoBehaviour
                 {
 					
 
-					God.instance._players = _players; // tell god about your problems;
+					GameObject.Find("God").GetComponent<God>()._players = _players; // tell god about your problems;
 					SceneManager.LoadScene("Game");
 
 

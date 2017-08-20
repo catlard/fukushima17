@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class God : SingletonMonoBehavior<God> {
+public class God : MonoBehaviour {
 
 	public List<PlayerData> _players; 
 	public int _fakePlayersAtStart = 0;
 
 
 	public void Awake() {
+		_players = new List<PlayerData> ();
 		DontDestroyOnLoad (gameObject);
 		if (_fakePlayersAtStart < 1)
 			return;

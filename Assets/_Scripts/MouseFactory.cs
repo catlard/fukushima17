@@ -5,21 +5,23 @@ using UnityEngine;
 public class MouseFactory : SingletonMonoBehavior<MouseFactory> {
     public GameObject _mousePrefab;
 
-    public List<GameObject> mouses;
+	public List<CircleCollider2D> oldMouseColliders;
 
     public void init()
     {
-        mouses = new List<GameObject>();
+		oldMouseColliders = new List<CircleCollider2D>();
     }
 
     public Mouse makeMouse(PlayerData input)
     {
+		if (oldMouseColliders == null)
+			init ();
+
         Vector3 position = new Vector3(Random.Range(-10.0f, 10.0f), 0, 0);
         GameObject new_mouse = GameObject.Instantiate(_mousePrefab, position,Quaternion.identity);
         SpriteRenderer r = new_mouse.transform.Find("Sprite").GetComponent<SpriteRenderer>();
         TextMesh s = new_mouse.GetComponentInChildren<TextMesh>();
 		Mouse m = new_mouse.GetComponent<Mouse> ();
-        mouses.Add(new_mouse);
 
 		m._myData = input;
 
@@ -27,23 +29,20 @@ public class MouseFactory : SingletonMonoBehavior<MouseFactory> {
         r.color = input.color;
         s.text = input.UP_alphabet;
         //Debug.Log(s);
-        igroneCollsoin();
+		IgnoreCollisions(m.GetComponent<CircleCollider2D>());
 
         return m;
     }
 
-    public void igroneCollsoin()
+	public void IgnoreCollisions(CircleCollider2D newCollider)
     {
-        foreach (var itemx in mouses)
-        {
-            foreach (var itemy in mouses)
-            {
-                if (itemx != itemy &&( itemx != null && itemy != null ) )
-                {
-                    Physics2D.IgnoreCollision(itemx.GetComponent<CircleCollider2D>(), itemy.GetComponent<CircleCollider2D>(),false);
-                }
-            }
-        }
+		foreach (CircleCollider2D c in oldMouseColliders) {
+			if (c != null && newCollider != c)
+				Physics2D.IgnoreCollision (c, newCollider);
+		}
+
+		oldMouseColliders.Add(newCollider);
+
     }
 
 }

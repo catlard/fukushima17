@@ -7,27 +7,34 @@ public class GameView : SingletonMonoBehavior<GameView> {
 
     public Transform spawnPoint;
 
+
 	public void Init() {
 		PlatformFactory.instance.Init ();
-        buildAllPlayer();
+
+		buildAllPlayer();
         resetAllPlayerPos();
     }
 
-    public void buildAllPlayer()
+	public void buildAllPlayer()
     {
-        foreach (var item in God.instance._players)
-        {
-            MouseFactory.instance.makeMouse(item);
 
+
+
+		foreach (PlayerData d in GameObject.Find("God").GetComponent<God>()._players)
+        {
+			Mouse m = (MouseFactory.instance.makeMouse(d));
+			GameController.instance.OnMakeMouse (m);
         }
-        GameModel.instance.findAllPlayer();
+
+
+        
     }
 
     public void resetAllPlayerPos()
     {
-        foreach (var item in GameModel.instance._playerList)
+        foreach (Mouse m in GameModel.instance._playerList)
         {
-            item.position = spawnPoint.position;
+            m.transform.position = spawnPoint.position;
         }
     }
 
@@ -67,12 +74,12 @@ public class GameView : SingletonMonoBehavior<GameView> {
         {
             return;
         }
-        foreach (var item in GameModel.instance.getPlayerList() )
+		foreach (Mouse m in GameModel.instance.getPlayerList() )
         {
-            if (checkPlayerOutOffCameraEdge(item) )
+            if (checkPlayerOutOffCameraEdge(m) )
             {
-                destroyPlayerMice(item.gameObject);
-                Debug.Log("del player : " + item.gameObject);
+                destroyPlayerMice(m);
+                Debug.Log("del player : " + m.gameObject);
                 gameoverDetermination();
                 return;
                 //ondelPlayer
@@ -93,10 +100,10 @@ public class GameView : SingletonMonoBehavior<GameView> {
         return true;
     }
 
-    bool checkPlayerOutOffCameraEdge(Transform trans)
+    bool checkPlayerOutOffCameraEdge(Mouse m)
     {
         Bounds b = CameraUtils.OrthographicBounds(Camera.main);
-        if (trans.position.x < b.min.x - 1.5 || trans.position.y < b.min.y - 1.5)
+		if (m.transform.position.x < b.min.x - 1.5 || m.transform.position.y < b.min.y - 1.5)
         {
             return true;
         }
@@ -104,11 +111,11 @@ public class GameView : SingletonMonoBehavior<GameView> {
         return false;
     }
 
-    private void destroyPlayerMice(GameObject playerMice)
+    private void destroyPlayerMice(Mouse m)
     {
         //移除玩家
-        GameModel.instance.removePlayerRegister(playerMice);
-        Destroy(playerMice);
+        GameModel.instance.removePlayerRegister(m);
+		Destroy(m.gameObject);
     }
 
     private void InitializedAllPlayer()

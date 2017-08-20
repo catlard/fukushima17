@@ -13,7 +13,7 @@ public class GameModel : SingletonMonoBehavior<GameModel> {
 
 
     public List<Transform> _platformsList; //所有平台的array
-    public List<Transform> _playerList;
+    public List<Mouse> _playerList;
 
      float _currentCameraStopPoint;
     bool _isCameraStop;
@@ -24,28 +24,18 @@ public class GameModel : SingletonMonoBehavior<GameModel> {
 
 
 	public void Init() {
-        _currentTimePass = 0;
-        _currentLevel = 0;
+		_currentTimePass = 0;
+		_currentLevel = 0;
 
-    }
-
-    public void findAllPlayer()
-    {
-        Debug.Log("jj");
-        _playerList = new List<Transform>();
-        foreach (var item in GameObject.FindGameObjectsWithTag("Player") )
-        {
-            _playerList.Add(item.transform);
-        }
-    }
+	}
     
 
 
 
 
-    public void removePlayerRegister(GameObject go)
+	public void removePlayerRegister(Mouse m)
     {
-        _playerList.Remove(go.transform);
+        _playerList.Remove(m);
     }
 
 	public float UpdateX() {
@@ -97,7 +87,7 @@ public class GameModel : SingletonMonoBehavior<GameModel> {
         _platformsList.Add(Platform);
     }
 
-    public List<Transform> getPlayerList()
+    public List<Mouse> getPlayerList()
     {
         return _playerList;
     }

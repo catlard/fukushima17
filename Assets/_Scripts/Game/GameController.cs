@@ -6,6 +6,7 @@ public class GameController : SingletonMonoBehavior<GameController> {
 
 	// Use this for initialization
 	void Start () {
+		print ("Start gamecontroller");
 		GameModel.instance.Init ();
 		GameView.instance.Init ();
 	}
@@ -53,6 +54,10 @@ public class GameController : SingletonMonoBehavior<GameController> {
         }
 
     }
+
+	public void OnMakeMouse(Mouse m) {
+		GameModel.instance._playerList.Add (m);
+	}
 
     public void OnEnterCameraStopPoint()
     {
