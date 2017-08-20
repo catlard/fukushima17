@@ -45,7 +45,7 @@ public class ResultModel : SingletonMonoBehavior<ResultModel> {
 		Debug.Log ("Load Game Result.");
 		PlayerObject.Clear ();
 		Players.Clear ();
-		Players = God.instance._players;
+		Players = God.Static._players;
 	}
 
 
