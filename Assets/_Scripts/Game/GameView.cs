@@ -5,10 +5,7 @@ using UnityEngine;
 public class GameView : SingletonMonoBehavior<GameView> {
     public GameObject singlePlatform;
 
-
-
-	private float _spaceBetweenPlatforms = 6;
-	private float _spaceBetweenCats = 6;
+    public Transform playerDataBaseObject;
 
 	public void Init() {
 		PlatformFactory.instance.Init ();
@@ -56,10 +53,24 @@ public class GameView : SingletonMonoBehavior<GameView> {
             {
                 destroyPlayerMice(item.gameObject);
                 Debug.Log("del player : " + item.gameObject);
+                gameoverDetermination();
                 return;
                 //ondelPlayer
             }
         }
+    }
+
+    public bool gameoverDetermination()
+    {
+        if (GameModel.instance.getPlayerList().Count > 0)
+        {
+            // not gameover
+            return false;
+        }
+
+        //yes no player left
+        GameController.instance.OnGameOver();
+        return true;
     }
 
     bool checkPlayerOutOffCameraEdge(Transform trans)
@@ -80,6 +91,11 @@ public class GameView : SingletonMonoBehavior<GameView> {
         Destroy(playerMice);
     }
 
+    private void InitializedAllPlayer()
+    {
+        //PlayerData PD = playerDataBaseObject.GetComponent<PlayerData>();
+
+    }
 
     public void displayLevel(int level)//work
     {

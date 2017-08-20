@@ -11,8 +11,11 @@ public class Mouse : MonoBehaviour {
 	private Rigidbody2D _body;
 	private Collider2D _collider;
 	private SpriteRenderer _mouseSprite;
+	public PlayerData _myData;
 
 	private CatBellyView _lastBelly;
+
+    public KeyCode playerKeycode;
 
 	public void Start() {
 		Init ();
@@ -55,10 +58,16 @@ public class Mouse : MonoBehaviour {
 			gameObject.layer = LayerMask.NameToLayer ("Default");
 		}
 
-		if (Input.GetMouseButtonDown (0) && _state == MouseState.LANDED) {
-			JumpToTarget ("CatBelly");
-			_state = MouseState.JUMPING;
-		}
+        if (playerKeycode <= 0)
+        {
+			if (Input.GetKeyDown(_myData.player_code) && _state == MouseState.LANDED)
+            {
+                JumpToTarget("CatBelly");
+                _state = MouseState.JUMPING;
+            }
+        }
+
+
 	}
 
 	private Vector2 GetRequiredForce(GameObject target) {
@@ -92,18 +101,24 @@ public class Mouse : MonoBehaviour {
 
 	}
 
+    void OnLanded()
+    {
+        _state = MouseState.LANDED;
+        _body.bodyType = RigidbodyType2D.Kinematic;
+        _body.velocity = Vector2.zero;
+        _body.transform.eulerAngles = Vector3.zero;
+        _body.angularVelocity = 0;
+    }
+
 	public void OnCollisionEnter2D(Collision2D c) {
 
 		Physics2D.IgnoreCollision (_collider, c.gameObject.GetComponent<Collider2D> ());
 
 		string tag = c.gameObject.tag;
 		if (tag == "Floor") {
-			_state = MouseState.LANDED;
-			_body.bodyType = RigidbodyType2D.Kinematic;
-			_body.velocity = Vector2.zero;
-			_body.transform.eulerAngles = Vector3.zero;
-			_body.angularVelocity = 0;
-		} else if(tag == "CatBelly") {
+            OnLanded();
+
+        } else if(tag == "CatBelly") {
 			_lastBelly = c.gameObject.GetComponent<CatBellyView> ();
 			JumpToTarget ("Floor");
 		}
