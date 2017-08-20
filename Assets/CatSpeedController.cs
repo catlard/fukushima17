@@ -4,13 +4,23 @@ using UnityEngine;
 
 public class CatSpeedController : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
+	public float _speedMult = 1f;
+	public Animator _animator;
+
+	public void ChangeSpeed(float newSpeed) {
+		_speedMult = newSpeed;
+		_animator.SetFloat("speed", newSpeed);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+//
+//	public void Update() {
+//		ChangeSpeed (_speedMult);
+//	}
+//
+
+
+
+
+
+
 }
