@@ -160,12 +160,37 @@ public class Mouse : MonoBehaviour {
 			JumpToTarget ("Floor");
 		}
 
-        if (tag == "cheese")
+ 
+	}
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "cheese")
         {
             print("find cheese");
+            Destroy(collision.gameObject);
+            _myData.score+=1;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        //把結果傳回god
+
+        for (int i = 0; i < God.Static._players.Count-1; i++)
+        {
+            if (_myData.player_code == God.Static._players[i].player_code)
+            {
+                God.Static._players[i].score = _myData.score;
+                return;
+            }
         }
 
+        foreach (PlayerData item in God.Static._players)
+        {
 
-	}
+        }
+
+    }
 
 }

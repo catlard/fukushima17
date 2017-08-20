@@ -10,7 +10,7 @@ public class CountdownManager : SingletonMonoBehavior<CountdownManager> {
 	private float _maxScale = 2;
 
 	public void Start() {
-		_text = transform.FindChild ("Text").GetComponent<TextMesh> ();
+		_text = transform.Find ("Text").GetComponent<TextMesh> ();
 		_text.text = "";
 
 	}
